@@ -1,0 +1,447 @@
+@import url("colors.css");
+
+* {
+	border: none;
+	border-radius: 10;
+    font-family: "JetbrainsMono Nerd Font Propo" ;
+	font-size: 15px;
+	min-height: 10px;
+}
+window#waybar {
+	background: transparent;
+}
+#mpris {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#mpris:hover{
+    color: @background; 
+    background: @color14;
+}
+#power-profiles-daemon {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#power-profiles-daemon:hover{
+    color: @background; 
+    background: @color14;
+}
+#network {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#keyboard-state{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;    
+}
+#keyboard-state:hover{
+    color: @background; 
+    background: @color14;
+}
+#network:hover { 
+    color: @background;
+    background: @color14;
+}
+#custom-keybinds {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: @color15;
+    background: @background;
+    transition: 0.3s;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+}
+#custom-keybinds:hover { 
+    background: @color14;
+    color: @background;
+}
+#cava{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s; 
+}
+#cava:hover{
+    color: @background;
+    background: @color14;
+}
+#battery{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s; 
+}
+#battery:hover{
+    color: @background;
+    background: @color14;
+}
+#backlight:hover{
+    color: @background;
+    background: @color14;
+}
+#backlight{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s; 
+}
+
+
+#language{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#language:hover{
+    color: @background; 
+    background: @color14; 
+}
+#pulseaudio {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    padding: 8px;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#pulseaudio:hover{ 
+    background: @color14;
+    color: @background;
+}
+#pulseaudio.muted {
+    color: @color15;
+    background: @background; 
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#pulseaudio.muted:hover {
+    background: @color14;
+    color: @background; 
+
+}
+#clock {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#clock:hover {
+    color: @background; 
+    background: @color14;
+}
+#disk{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#disk:hover{
+    color: @background; 
+    background: @color14;
+}
+#privacy{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#idle_inhibitor{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#idle_inhibitor.activated{
+    color: @color15;
+    border-color: @color14;
+}
+#idle_inhibitor.activated:hover{
+    background: @color14;
+    color: @background;
+    border-color: @color14;
+}
+#idle_inhibitor.deactivated{
+    color: @color15
+}
+#idle_inhibitor.deactivated:hover{
+    color: @background; 
+    background: @color14;
+}
+#memory {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    margin-bottom: 0px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#memory:hover { 
+    color: @background; 
+    background: @color14;
+
+}
+#cpu {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    margin-bottom: 0px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#cpu:hover {
+    color: @background; 
+    background: @color14;
+
+}
+#custom-launcher {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    color: @color15;
+    background: @background;
+    transition: 0.3s;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+}
+#custom-launcher:hover { 
+    background: @color14;
+    color: @background;
+}
+#network.disconnected {
+    color: @color15;
+    background: @background; 
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+}
+#network.disconnected:hover {
+    background: @color14;
+    color: @background; 
+}
+#custom-power {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 8px;
+    margin-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#custom-power:hover {
+    background: @color14;
+    color: @background;
+    border-color: @color14;
+
+}
+#workspaces {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: @background; 
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    color: @color15;
+    transition: 0.3s;
+}
+
+#workspaces button {
+    color: @color15;
+    transition: 0.3s;
+}
+#workspaces button:hover {
+    background: transparent;
+    color: transparent;
+    box-shadow: none;
+    text-shadow: none;
+}
+#tray{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#tray menu{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
