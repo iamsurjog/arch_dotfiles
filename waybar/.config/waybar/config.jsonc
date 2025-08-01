@@ -1,0 +1,172 @@
+{
+	"layer": "top",
+	"modules-left": ["custom/launcher","cpu","memory","disk","hyprland/workspaces"],
+	"modules-center": ["clock"],
+	"modules-right": ["tray","cava","backlight","pulseaudio","battery", "power-profiles-daemon", "custom/power"],
+    
+    "mpris": {
+        "format": "DEFAULT: {player_icon} {dynamic}",
+        "format-paused": "DEFAULT: {status_icon} <i>{dynamic}</i>",
+        "player-icons": {
+            "default": "▶",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        // "ignored-players": ["firefox"]
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+
+	"pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon}  {volume}%",
+		"format-muted": "muted",
+		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "max-volume": 153,
+		"format-icons": {
+			"default": ["", "", ""]
+		}
+	},
+    "cava": {
+            "framerate": 144,
+            "autosens": 1,
+            "sensitivity": 5,
+            "bars": 15,
+            "lower_cutoff_freq": 50,
+            "higher_cutoff_freq": 10000,
+            "method": "pulse",
+            "source": "auto",
+            "stereo": false,
+            "reverse": false,
+            "bar_delimiter": 0,
+            "monstercat": true,
+            "waves": true,
+            "noise_reduction": 0.77,
+            "input_delay": 0,
+            "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+            "on-click": "pavucontrol"
+    },
+
+    // "custom/keybinds": {
+    //     "format": "{icon} KB",
+    //     "format-icons": ["󰘳"],
+    //     "on-click": "bash ~/Documents/themes/keybinds/keybinds.sh"
+    // },
+    //
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon}  {percent}%",
+        "format-icons": ["", ""],
+        "on-click": "grim  - | satty --filename - --output-filename ~/Pictures/Screenshots/screenshot-$(date '+%Y%m%d-%H:%M:%S').png --copy-command 'wl-copy'"
+    },
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    },
+    // "keyboard-state": {
+    // "numlock": false,
+    // "capslock": true,
+    // "format": "{icon} {name}",
+    // "format-icons": {
+    //     "locked": "",
+    //     "unlocked": ""
+    // }
+    // },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "disk": {
+        "interval": 30,
+        "format": "  {percentage_used}%",
+        "path": "/"
+    },
+    // "privacy": {
+    //     "icon-spacing": 10,
+    //     "icon-size": 18,
+    //     "transition-duration": 250,
+    //     "tooltip": false,
+    //     "modules": [
+    //         {
+    //             "type": "screenshare",
+    //             "tooltip": true,
+    //             "tooltip-icon-size": 24
+    //         },
+    //         {
+    //             "type": "audio-out",
+    //             "tooltip": true,
+    //             "tooltip-icon-size": 24
+    //         },
+    //         {
+    //             "type": "audio-in",
+    //             "tooltip": true,
+    //             "tooltip-icon-size": 24
+    //         }
+    //     ]
+    // },
+    "hyprland/language": {
+        "format": "  {1}",
+        "tooltip": false,
+    },
+    "cpu": {
+        "interval": 15,
+        "format": "  {}%",
+        "max-length": 10,
+        "on-click": "kitty nvtop" 
+    },
+    "memory": {
+        "interval": 30,
+        "format": "  {}%",
+        "max-length": 10,
+        "on-click": "kitty btop" 
+    },
+    "custom/launcher":{
+        "format": "",
+        "on-click": "rofi -show drun",
+        "on-click-right": "killall rofi",
+        "tooltip": false,
+    },
+    "custom/power":{
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "wlogout",
+    },
+    "clock": {
+        "format": "  {:%A - %B %d, %Y - %R}",
+        "tooltip": false,
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "active": "",
+            "default": ""
+    },
+    },
+}
