@@ -1,12 +1,12 @@
 {
-	"layer": "top",
-	"modules-left": ["custom/launcher","cpu","memory","disk","hyprland/workspaces"],
-	"modules-center": ["clock"],
-	"modules-right": ["tray","cava","backlight","pulseaudio","battery", "power-profiles-daemon", "custom/power"],
-    
+    "layer": "top",
+    "modules-left": ["group/launcher", "hyprland/workspaces", ""],
+    "modules-center": ["group/music","clock"],
+    "modules-right": ["tray","", "group/power"],
+
     "mpris": {
-        "format": "DEFAULT: {player_icon} {dynamic}",
-        "format-paused": "DEFAULT: {status_icon} <i>{dynamic}</i>",
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
         "player-icons": {
             "default": "▶",
             "mpv": "🎵"
@@ -29,35 +29,35 @@
         }
     },
 
-	"pulseaudio": {
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon}  {volume}%",
-		"format-muted": "muted",
-		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "pulseaudio": {
+        "tooltip": false,
+        "scroll-step": 5,
+        "format": "{icon}  {volume}%",
+        "format-muted": "muted",
+        "on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "max-volume": 153,
-		"format-icons": {
-			"default": ["", "", ""]
-		}
-	},
+        "format-icons": {
+            "default": ["", "", ""]
+        }
+    },
     "cava": {
-            "framerate": 144,
-            "autosens": 1,
-            "sensitivity": 5,
-            "bars": 15,
-            "lower_cutoff_freq": 50,
-            "higher_cutoff_freq": 10000,
-            "method": "pulse",
-            "source": "auto",
-            "stereo": false,
-            "reverse": false,
-            "bar_delimiter": 0,
-            "monstercat": true,
-            "waves": true,
-            "noise_reduction": 0.77,
-            "input_delay": 0,
-            "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-            "on-click": "pavucontrol"
+        "framerate": 144,
+        "autosens": 1,
+        "sensitivity": 5,
+        "bars": 25,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pulse",
+        "source": "auto",
+        "stereo": false,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": true,
+        "waves": true,
+        "noise_reduction": 0.77,
+        "input_delay": 0,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "on-click": "pavucontrol"
     },
 
     // "custom/keybinds": {
@@ -146,6 +146,8 @@
         "on-click-right": "killall rofi",
         "tooltip": false,
     },
+
+
     "custom/power":{
         "format": "⏻",
         "tooltip": false,
@@ -167,6 +169,51 @@
             "urgent": "",
             "active": "",
             "default": ""
+        },
     },
+
+    "group/launcher": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "launcher",
+            "transition-left-to-right": true,
+        },
+        "modules": [
+            "custom/launcher",
+            "memory",
+            "cpu",
+            "disk",
+        ]
     },
+
+    "group/power": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "power",
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "custom/power",
+            "backlight",
+            "pulseaudio",
+            "battery",
+            "power-profiles-daemon",
+        ]
+    },
+
+    "group/music": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "power",
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "cava",
+            "mpris",
+        ]
+    },
+
 }
