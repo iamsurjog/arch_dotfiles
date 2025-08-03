@@ -3,3 +3,23 @@ waypaper/.config/waypaper/config.ini
 colors.*
 # **/.config/**/colors*
 # **/colors-hyprland.conf
+.zsh_history
+zsh/.zsh/plugins/fsh
+zsh/.zsh/plugins/zsh-autosuggestions
+zsh/.zsh/plugins/zsh-completions
+zsh/.zsh/plugins
+waypaper/.config/waypaper/config.ini
+accels.scm
+renamerrc
+custom_homepage/css/colors.css
+custom_homepage/v1/css/colors.css
+custom_homepage/v2/css/colors.css
+Hyprland/.config/hypr/colors-hyprland.conf
+kitty/.config/kitty/colors.conf
+rofi/.config/rofi/colors.rasi
+swaync/.config/swaync/colors.css
+swayosd/.config/swayosd/colors.css
+waybar/.config/waybar/colors.css
+wlogout/.config/wlogout/colors.css
+wofi/.config/wofi/colors.css
+Hyprland/.config/hypr/confs/gitignored.conf
