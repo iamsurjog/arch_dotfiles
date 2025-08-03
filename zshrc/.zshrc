@@ -20,6 +20,7 @@ alias lg='lazygit'
 alias bomba="df -h | grep 'Filesystem\|nvme' "
 alias stats="journalctl -p 3 -xb"
 alias ff="fastfetch"
+alias :q="exit"
 
 # ----------------------------------------
 # PATH Variables
