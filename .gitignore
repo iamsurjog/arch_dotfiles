@@ -1,8 +1,4 @@
 waypaper/.config/waypaper/config.ini
-# rofi/.config/rofi/colors.rasi
-colors.*
-# **/.config/**/colors*
-# **/colors-hyprland.conf
 .zsh_history
 zsh/.zsh/plugins/fsh
 zsh/.zsh/plugins/zsh-autosuggestions
@@ -23,3 +19,5 @@ waybar/.config/waybar/colors.css
 wlogout/.config/wlogout/colors.css
 wofi/.config/wofi/colors.css
 Hyprland/.config/hypr/confs/gitignored.conf
+.DS_STORE
+
