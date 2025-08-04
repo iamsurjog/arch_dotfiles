@@ -1,8 +1,8 @@
 {
     "layer": "top",
-    "modules-left": ["group/launcher", "hyprland/workspaces", ""],
+    "modules-left": ["group/launcher", "hyprland/workspaces"],
     "modules-center": ["group/music","clock"],
-    "modules-right": ["tray","", "group/power"],
+    "modules-right": ["tray", "group/power"],
 
     "mpris": {
         "format": "{player_icon} {dynamic}",
@@ -60,12 +60,6 @@
         "on-click": "pavucontrol"
     },
 
-    // "custom/keybinds": {
-    //     "format": "{icon} KB",
-    //     "format-icons": ["󰘳"],
-    //     "on-click": "bash ~/Documents/themes/keybinds/keybinds.sh"
-    // },
-    //
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon}  {percent}%",
@@ -83,15 +77,6 @@
         "format-icons": ["", "", "", "", ""],
         "max-length": 25
     },
-    // "keyboard-state": {
-    // "numlock": false,
-    // "capslock": true,
-    // "format": "{icon} {name}",
-    // "format-icons": {
-    //     "locked": "",
-    //     "unlocked": ""
-    // }
-    // },
     "tray": {
         "icon-size": 18,
         "spacing": 10
@@ -100,33 +85,6 @@
         "interval": 30,
         "format": "  {percentage_used}%",
         "path": "/"
-    },
-    // "privacy": {
-    //     "icon-spacing": 10,
-    //     "icon-size": 18,
-    //     "transition-duration": 250,
-    //     "tooltip": false,
-    //     "modules": [
-    //         {
-    //             "type": "screenshare",
-    //             "tooltip": true,
-    //             "tooltip-icon-size": 24
-    //         },
-    //         {
-    //             "type": "audio-out",
-    //             "tooltip": true,
-    //             "tooltip-icon-size": 24
-    //         },
-    //         {
-    //             "type": "audio-in",
-    //             "tooltip": true,
-    //             "tooltip-icon-size": 24
-    //         }
-    //     ]
-    // },
-    "hyprland/language": {
-        "format": "  {1}",
-        "tooltip": false,
     },
     "cpu": {
         "interval": 15,
