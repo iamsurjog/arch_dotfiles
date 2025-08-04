@@ -10,7 +10,7 @@
 window#waybar {
 	background: transparent;
 }
-#mpris {
+#mpris #power-profiles-daemon #network #keyboard-state #cava #battery #backlight #pulseaudio #disk #privacy #idle_inhibitor #memory #cpu #tray #clock{
     margin-top: 10px;
     margin-left: 8px;
     padding-left: 10px;
@@ -25,183 +25,11 @@ window#waybar {
     border-color: @color14;
     transition: 0.3s;
 }
-#mpris:hover{
+#mpris:hover #power-profiles-daemon:hover #network:hover #keyboard-state:hover #cava:hover #battery:hover #backlight:hover #pulseaudio:hover #disk:hover #privacy:hover #idle_inhibitor:hover #memory:hover #cpu:hover #tray:hover #clock:hover{
     color: @background; 
     background: @color14;
-}
-#power-profiles-daemon {
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#power-profiles-daemon:hover{
-    color: @background; 
-    background: @color14;
-}
-#network {
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#keyboard-state{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;    
-}
-#keyboard-state:hover{
-    color: @background; 
-    background: @color14;
-}
-#network:hover { 
-    color: @background;
-    background: @color14;
-}
-#custom-keybinds {
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    color: @color15;
-    background: @background;
-    transition: 0.3s;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-}
-#custom-keybinds:hover { 
-    background: @color14;
-    color: @background;
-}
-#cava{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s; 
-}
-#cava:hover{
-    color: @background;
-    background: @color14;
-}
-#battery{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s; 
-}
-#battery:hover{
-    color: @background;
-    background: @color14;
-}
-#backlight:hover{
-    color: @background;
-    background: @color14;
-}
-#backlight{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s; 
 }
 
-
-#language{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#language:hover{
-    color: @background; 
-    background: @color14; 
-}
-#pulseaudio {
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    padding: 8px;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#pulseaudio:hover{ 
-    background: @color14;
-    color: @background;
-}
 #pulseaudio.muted {
     color: @color15;
     background: @background; 
@@ -214,74 +42,6 @@ window#waybar {
     background: @color14;
     color: @background; 
 
-}
-#clock {
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#clock:hover {
-    color: @background; 
-    background: @color14;
-}
-#disk{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#disk:hover{
-    color: @background; 
-    background: @color14;
-}
-#privacy{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#idle_inhibitor{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
 }
 #idle_inhibitor.activated{
     color: @color15;
@@ -298,46 +58,6 @@ window#waybar {
 #idle_inhibitor.deactivated:hover{
     color: @background; 
     background: @color14;
-}
-#memory {
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    margin-bottom: 0px;
-    padding-right: 10px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#memory:hover { 
-    color: @background; 
-    background: @color14;
-
-}
-#cpu {
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    margin-bottom: 0px;
-    padding-right: 10px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#cpu:hover {
-    color: @background; 
-    background: @color14;
-
 }
 #custom-launcher {
     font-size: 20px;
@@ -389,7 +109,6 @@ window#waybar {
 #custom-power:hover {
     background: @color14;
     color: @background;
-    border-color: @color14;
 
 }
 #workspaces {
@@ -414,34 +133,4 @@ window#waybar {
     color: transparent;
     box-shadow: none;
     text-shadow: none;
-}
-#tray{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
-}
-#tray menu{
-    margin-top: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0px;
-    border-radius: 10px;
-    transition: none;
-    background: @background; 
-    color: @color15;
-    border-bottom: 3px;
-    border-style: solid;
-    border-color: @color14;
-    transition: 0.3s;
 }
