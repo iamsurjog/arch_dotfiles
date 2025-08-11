@@ -7,8 +7,35 @@
 	font-size: 15px;
 	min-height: 10px;
 }
+/* window#waybar.kitty { */
+/*     background-color: #ffffff; */
+/*     color: #111111; */
+/* } */
 window#waybar {
 	background: transparent;
+}
+window#waybar.empty #window {
+    background: transparent;
+    border: transparent;
+}
+#window {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    background: @background; 
+    color: @color15;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @color14;
+    transition: 0.3s;
+}
+#window:hover{
+    color: @background; 
+    background: @color14;
 }
 #mpris {
     margin-top: 10px;
