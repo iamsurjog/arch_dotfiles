@@ -1,8 +1,18 @@
 {
     "layer": "top",
     "modules-left": ["group/launcher", "hyprland/workspaces"],
-    "modules-center": ["group/music","clock"],
+    "modules-center": ["group/music", "","clock"],
     "modules-right": ["tray", "group/power"],
+
+    "hyprland/window": {
+        "format": "{}",
+        // "rewrite": {
+        //     "(.*) — Mozilla Firefox": "🌎 $1",
+        //     "(.*) - fish": "> [$1]"
+        // },
+        "separate-outputs": true,
+        "max-length": 20
+    },
 
     "mpris": {
         "format": "{player_icon} {dynamic}",
