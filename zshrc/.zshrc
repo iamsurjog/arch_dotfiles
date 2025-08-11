@@ -26,6 +26,8 @@ alias :q="exit"
 # PATH Variables
 # ----------------------------------------
 export PATH="/home/randomguy/surjo/college/softwares:$PATH"
+export PATH="/home/randomguy/surjo/path:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # ----------------------------------------
 # Completion System Setup (Optimized)
