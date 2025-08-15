@@ -1,3 +1,9 @@
+# [[ $TERM != "screen" ]] && exec tmux
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux
+# fi
+# if [ "$TMUX" = "" ]; then tmux new \; set-option destroy-unattached; fi
+
 fastfetch
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #   exec tmux
@@ -77,6 +83,9 @@ python_venv() {
     [[ -d $MYVENV ]] && source $MYVENV/bin/activate >/dev/null 2>&1
     [[ ! -d $MYVENV ]] && deactivate >/dev/null 2>&1
 }
+
+#!/bin/bash
+
 
 autoload -U add-zsh-hook
 add-zsh-hook chpwd python_venv
