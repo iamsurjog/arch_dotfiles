@@ -1,7 +1,7 @@
 @import url("colors.css");
 
 @define-color theme_bg_color @background;
-@define-color theme_fg_color @color3;
+@define-color theme_fg_color @color14;
 
 window#osd {
     padding: 12px 12px;

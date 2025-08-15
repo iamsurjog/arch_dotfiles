@@ -434,13 +434,23 @@ window#waybar.empty #window {
 
 #workspaces button {
     color: @color15;
-    transition: 0.3s;
+    transition-duration: 0.3s;
 }
 #workspaces button:hover {
     background: transparent;
     color: transparent;
     box-shadow: none;
     text-shadow: none;
+}
+@keyframes blinking {
+  0%   {color: @color15;}
+  50%  {color: @background;}
+  100% {color: @color15;}
+}
+#workspaces button.urgent{
+    animation-name: blinking;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
 }
 #tray{
     margin-top: 10px;
