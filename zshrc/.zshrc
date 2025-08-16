@@ -27,6 +27,7 @@ alias bomba="df -h | grep 'Filesystem\|nvme' "
 alias stats="journalctl -p 3 -xb"
 alias ff="fastfetch"
 alias :q="exit"
+alias chungus="du -shc * | sort -h"
 
 # ----------------------------------------
 # PATH Variables
