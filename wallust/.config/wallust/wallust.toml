@@ -76,5 +76,8 @@ pywalfox.target = '~/.cache/wal/colors.json'
 rofi.template = 'colors-rofi.rasi'
 rofi.target = '~/.config/rofi/colors.rasi'
 
+zathura.template = 'colors-zathura'
+zathura.target = '~/.config/zathura/colors'
+
 nvim.template = 'colors-nvim.vim'
 nvim.target = '~/.cache/wal/colors-wal.vim'
