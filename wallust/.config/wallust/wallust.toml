@@ -64,6 +64,9 @@ waybar.target = '~/.config/waybar/colors.css'
 wlogout.template = 'colors-gtkcss.css'
 wlogout.target = '~/.config/wlogout/colors.css'
 
+vesktop.template = 'colors-vesktop.css'
+vesktop.target = '~/.var/app/dev.vencord.Vesktop/config/vesktop/themes/ClearVision-v7-BetterDiscord.theme.css'
+
 wofi.template = 'colors-gtkcss.css'
 wofi.target = '~/.config/wofi/colors.css'
 
