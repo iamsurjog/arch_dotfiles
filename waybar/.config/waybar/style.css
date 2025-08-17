@@ -433,6 +433,7 @@ window#waybar.empty #window {
 }
 
 #workspaces button {
+    /* color: @color15; */
     color: @color15;
     transition-duration: 0.3s;
 }
@@ -447,6 +448,10 @@ window#waybar.empty #window {
   50%  {color: @background;}
   100% {color: @color15;}
 }
+#workspaces button.active{
+    color: @color13;
+}
+
 #workspaces button.urgent{
     animation-name: blinking;
     animation-duration: 0.7s;
