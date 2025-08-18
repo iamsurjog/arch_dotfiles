@@ -10,7 +10,8 @@ fastfetch
 # fi
 
 alias n='nvim'
-alias l='eza -al'
+alias l='eza -alh'
+alias ls='eza -alh --icons --git'
 alias i='yay -S'
 alias s='yay -Ss'
 alias q='yay -Q'
@@ -28,6 +29,7 @@ alias stats="journalctl -p 3 -xb"
 alias ff="fastfetch"
 alias :q="exit"
 alias chungus="du -shc * | sort -h"
+alias pdfy="unoconv -f pdf"
 
 # ----------------------------------------
 # PATH Variables
