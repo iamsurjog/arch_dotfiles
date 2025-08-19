@@ -1,8 +1,14 @@
 {
     "layer": "top",
     "modules-left": ["group/launcher", "hyprland/workspaces"],
-    "modules-center": ["group/music","clock"],
+    "modules-center": ["group/music", "hyprland/submap","clock"],
     "modules-right": ["tray", "group/power"],
+
+    "hyprland/submap": {
+        "format": "{}",
+        "max-length": 8,
+        "tooltip": false
+    },
 
     "hyprland/window": {
         "format": "{}",
