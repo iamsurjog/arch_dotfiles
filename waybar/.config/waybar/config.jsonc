@@ -125,9 +125,26 @@
         "format": "  {:%A - %B %d, %Y - %R}",
         "tooltip": false,
     },
+    // "hyprland/workspaces": {
+    //     "format": "{name}",
+    //     "tooltip": true,
+    //     "show-special": true,
+    //     "persistent-workspaces": {
+    //         "1":[],
+    //         "2":[],
+    //         "3":[],
+    //     }
+    //     // "format-icons": {
+    //     //     "urgent": "",
+    //     //     "active": "",
+    //     //     "default": ""
+    //     // },
+    // },
     "hyprland/workspaces": {
         "format": "{name}",
-        "tooltip": false,
+        "tooltip": true,
+        "show-special": true,
+        "special-visible-only": true,
         "persistent-workspaces": {
             "1":[],
             "2":[],
