@@ -4,7 +4,7 @@
 # fi
 # if [ "$TMUX" = "" ]; then tmux new \; set-option destroy-unattached; fi
 
-fastfetch
+# fastfetch
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #   exec tmux
 # fi
@@ -36,6 +36,7 @@ alias pdfy="unoconv -f pdf"
 # ----------------------------------------
 export PATH="/home/randomguy/surjo/college/softwares:$PATH"
 export PATH="/home/randomguy/surjo/path:$PATH"
+export GEMINI_API_KEY="AIzaSyD7wlz7OSfR8N71HXDK4VXZMQ85JAb97Us"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # ----------------------------------------
