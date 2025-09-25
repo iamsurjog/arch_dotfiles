@@ -10,4 +10,6 @@ pywalfox update
 killall swayosd-server
 spicetify apply
 sleep 0.5
+killall quickshell
+quickshell --config popout3 
 swayosd-server

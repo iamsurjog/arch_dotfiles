@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "modules-left": ["group/launcher", "hyprland/workspaces"],
-    "modules-center": ["group/music", "hyprland/submap","clock"],
+    "modules-center": ["hyprland/submap", "clock"],
     "modules-right": ["tray", "group/power"],
 
     "hyprland/submap": {
@@ -128,8 +128,10 @@
         "on-click": "wlogout",
     },
     "clock": {
-        "format": "  {:%A - %B %d, %Y - %R}",
-        "tooltip": false,
+        // "format": "  {:%A - %B %d, %Y - %R}",
+        "format": "{:%R}",
+        "tooltip": true,
+        "tooltip-format": "{:%A - %B, %Y}"
     },
     // "hyprland/workspaces": {
     //     "format": "{name}",
