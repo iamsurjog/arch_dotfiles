@@ -107,3 +107,4 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/negligible.omp.jso
 eval "$(fnm env)"
 
 eval "$(atuin init zsh)"
+clear
