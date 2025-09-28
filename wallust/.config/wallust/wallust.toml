@@ -86,4 +86,4 @@ nvim.template = 'colors-nvim.vim'
 nvim.target = '~/.cache/wal/colors-wal.vim'
 
 popout.template = 'colors-popout.qml'
-popout.target = '~/.config/quickshell/popout/services/Colours.qml'
+popout.target = '~/.cache/temp/Colours.qml'
