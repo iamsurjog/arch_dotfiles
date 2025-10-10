@@ -3,6 +3,7 @@
 echo "Wallpaper being used is $1"
 wallust run $1
 cp $1 ~/Pictures/wallpaper.png
+# swww img ~/Pictures/wallpaper.png -t grow --transition-duration 1
 killall -SIGUSR2 waybar 
 swaync-client -rs
 notify-send -i dialog-information-symbolic "Changing wallpaper and colorscheme" "Waypaper at work"
