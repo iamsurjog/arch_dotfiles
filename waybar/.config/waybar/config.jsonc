@@ -38,10 +38,10 @@
         "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
         "tooltip": true,
         "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
+            "default": " ",
+            "performance": " ",
+            "balanced": " ",
+            "power-saver": " "
         }
     },
 
@@ -115,7 +115,7 @@
         "on-click": "kitty btop" 
     },
     "custom/launcher":{
-        "format": "",
+        "format": " ",
         "on-click": "rofi -show drun",
         "on-click-right": "killall rofi",
         "tooltip": false,
@@ -125,7 +125,7 @@
     "custom/power":{
         "format": "⏻",
         "tooltip": false,
-        "on-click": "wlogout",
+        "on-click": "wlogout -b 2",
     },
     "clock": {
         // "format": "  {:%A - %B %d, %Y - %R}",
@@ -169,6 +169,21 @@
             "13": "XIII",
             "14": "XIV",
             "15": "XV",
+            "16": "XVI",
+            "17": "XVII",
+            "18": "XVIII",
+            "19": "XIX",
+            "20": "XX",
+            "21": "XXI",
+            "22": "XXII",
+            "23": "XXIII",
+            "24": "XXIV",
+            "25": "XXV",
+            "26": "XXVI",
+            "27": "XXVII",
+            "28": "XXVIII",
+            "29": "XXIX",
+            "30": "XXX",
         }  
     },
 
