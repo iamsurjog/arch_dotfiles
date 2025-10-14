@@ -30,6 +30,7 @@ alias ff="fastfetch"
 alias :q="exit"
 alias chungus="du -shc * | sort -h"
 alias pdfy="unoconv -f pdf"
+alias gremlin="JAVA_HOME=/usr/lib/jvm/java-11-openjdk gremlin"
 
 # ----------------------------------------
 # PATH Variables
