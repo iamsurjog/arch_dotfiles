@@ -391,7 +391,7 @@ window#waybar.empty #window {
     margin-top: 10px;
     margin-left: 5px;
     padding-left: 10px;
-    padding-right: 15px;
+    padding-right: 5px;
     border-radius: 10px;
     transition: none;
     color: @color15;
