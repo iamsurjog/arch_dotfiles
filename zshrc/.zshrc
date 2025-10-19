@@ -37,7 +37,6 @@ alias gremlin="JAVA_HOME=/usr/lib/jvm/java-11-openjdk gremlin"
 # ----------------------------------------
 export PATH="/home/randomguy/surjo/college/softwares:$PATH"
 export PATH="/home/randomguy/surjo/path:$PATH"
-export GEMINI_API_KEY="AIzaSyD7wlz7OSfR8N71HXDK4VXZMQ85JAb97Us"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # ----------------------------------------
