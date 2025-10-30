@@ -90,3 +90,6 @@ popout.target = '~/.cache/temp/Colours.qml'
 
 overview.template = 'colors-overview.qml'
 overview.target = '~/.config/quickshell/overview/common/Appearance.qml'
+
+obsidian.template = 'colors-obsidian.css'
+obsidian.target = '~/surjo/vaults/brain/.obsidian/snippets/wal.css'
