@@ -6,7 +6,8 @@
 
     "custom/workgroup":{
         "interval": 1,
-        "exec":"~/.config/waybar/scripts/workspace.sh"
+        "exec":"~/.config/waybar/scripts/workgroup.sh",
+        "on-click":"~/.config/waybar/scripts/reset_workgroup.sh"
     },
 
     "hyprland/submap": {
