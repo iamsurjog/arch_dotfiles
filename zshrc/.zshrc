@@ -108,3 +108,4 @@ eval "$(fnm env)"
 
 eval "$(atuin init zsh)"
 clear
+bindkey '^ ' autosuggest-accept
