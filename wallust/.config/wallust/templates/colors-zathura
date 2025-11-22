@@ -1,0 +1,8 @@
+set default-bg rgba({{background | rgb}},0.8)
+set recolor-lightcolor rgba(0,0,0,0)
+set recolor-darkcolor rgba({{foreground | rgb}},1)
+
+
+set highlight-color           rgba({{color13 | rgb}},0.5)
+set highlight-fg              rgba({{color10 | rgb}},1)
+set highlight-active-color    rgba({{color13 | rgb}},0.5)
