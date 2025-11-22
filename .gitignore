@@ -1,7 +1,15 @@
 waypaper/.config/waypaper/config.ini
-**/color*
 btop/.config/btop/themes/caelestia.theme
 btop/.config/btop/themes/caelestia.theme
 spicetify/.config/spicetify/Themes/caelestia/color.ini
 hypr/.config/hypr/scheme/current.conf
 hypr/.config/hypr/scheme/current.conf
+hypr/.config/hypr/colors-hyprland.conf
+kitty/.config/kitty/colors.conf
+rofi/.config/rofi/colors.rasi
+spicetify/.config/spicetify/Themes/text/color.ini
+swaync/.config/swaync/colors.css
+swayosd/.config/swayosd/colors.css
+waybar/.config/waybar/colors.css
+wlogout/.config/wlogout/colors.css
+zathura/.config/zathura/colors
