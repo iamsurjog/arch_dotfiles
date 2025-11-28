@@ -15,7 +15,7 @@ alias ls='eza -alh --icons --git'
 alias i='yay -S'
 alias s='yay -Ss'
 alias q='yay -Q'
-alias bye='yay -R'
+alias bye='yay -Rns'
 alias update='yay -Syu --disable-download-timeout'
 alias py='python3'
 alias pyt='python3.14t'
@@ -29,7 +29,7 @@ alias bomba="df -h | grep 'Filesystem\|nvme' "
 alias stats="journalctl -p 3 -xb"
 alias ff="fastfetch"
 alias :q="exit"
-alias chungus="du -shc * | sort -h"
+alias chungus="du -ha --max-depth=1 | sort -h"
 alias pdfy="unoconv -f pdf"
 alias gremlin="JAVA_HOME=/usr/lib/jvm/java-11-openjdk gremlin"
 
