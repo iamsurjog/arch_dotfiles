@@ -14,7 +14,7 @@ alias l='eza -alh'
 alias ls='eza -alh --icons --git'
 alias i='yay -S'
 alias s='yay -Ss'
-alias q='yay -Q'
+alias q='yay -Qi'
 alias bye='yay -Rns'
 alias update='yay -Syu --disable-download-timeout'
 alias py='python3'
@@ -108,5 +108,4 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/negligible.omp.jso
 eval "$(fnm env)"
 
 eval "$(atuin init zsh)"
-clear
 bindkey '^ ' autosuggest-accept
