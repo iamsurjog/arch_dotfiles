@@ -13,3 +13,7 @@ swayosd/.config/swayosd/colors.css
 waybar/.config/waybar/colors.css
 wlogout/.config/wlogout/colors.css
 zathura/.config/zathura/colors
+quickshell/.config/quickshell/overview/common/Appearance.qml
+quickshell/.config/quickshell/popout/services/Colours.qml
+quickshell/.config/quickshell/overview/common/Appearance.qml
+quickshell/.config/quickshell/popout/services/Colours.qml
