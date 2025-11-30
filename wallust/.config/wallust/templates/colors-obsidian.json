@@ -1,5 +1,6 @@
 {
     "vimMode": true,
+    "attachmentFolderPath": "./attachments",
     "accentColor": "{{color5}}"
 }
 
