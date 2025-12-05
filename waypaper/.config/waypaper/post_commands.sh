@@ -13,6 +13,9 @@ rm ~/.cache/temp/Colours.qml
 quickshell --config popout
 pywalfox update
 killall swayosd-server
-spicetify apply
+if pgrep -x "spotify" > /dev/null; then
+    spicetify apply
+fi
+
 sleep 0.5
 swayosd-server
