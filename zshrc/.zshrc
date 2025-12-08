@@ -36,9 +36,11 @@ alias gremlin="JAVA_HOME=/usr/lib/jvm/java-11-openjdk gremlin"
 # ----------------------------------------
 # PATH Variables
 # ----------------------------------------
+export XDG_CONFIG_HOME="$HOME/.config"
+export GOBIN="$HOME/go/bin/"
+export PATH="$GOBIN:$PATH"
 export PATH="/home/randomguy/surjo/college/softwares:$PATH"
 export PATH="/home/randomguy/surjo/path:$PATH"
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # ----------------------------------------
 # Completion System Setup (Optimized)
