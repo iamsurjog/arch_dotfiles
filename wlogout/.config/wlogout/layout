@@ -1,16 +1,4 @@
 {
-    "label" : "lock",
-    "action" : "sleep 0.5;hyprlock",
-    "text" : "Lock",
-    "keybind" : "l"
-}
-{
-    "label" : "logout",
-    "action" : "sleep 1; hyprctl dispatch exit",
-    "text" : "Logout",
-    "keybind" : "e"
-}
-{
     "label" : "shutdown",
     "action" : "systemctl poweroff",
     "text" : "Shutdown",
@@ -22,3 +10,16 @@
     "text" : "Reboot",
     "keybind" : "r"
 }
+{
+    "label" : "logout",
+    "action" : "loginctl kill-session $XDG_SESSION_ID",
+    "text" : "Logout",
+    "keybind" : "e"
+}
+{
+    "label" : "lock",
+    "action" : "loginctl lock-session",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+

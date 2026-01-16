@@ -131,7 +131,7 @@
     "custom/power":{
         "format": "⏻",
         "tooltip": false,
-        "on-click": "wlogout -b 2",
+        "on-click": "wlogout -b 4 -T 380 -B 380",
     },
     "clock": {
         // "format": "  {:%A - %B %d, %Y - %R}",
