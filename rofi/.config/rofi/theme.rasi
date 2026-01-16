@@ -1,6 +1,6 @@
 @theme "./colors.rasi"
 * {
-    font: "JetBrainsMono Nerd Font Mono 14";
+    font: "Kode Mono 14";
 }
 
 /*****----- Global Properties -----*****/

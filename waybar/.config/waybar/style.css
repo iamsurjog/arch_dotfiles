@@ -27,7 +27,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -47,7 +47,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -66,7 +66,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -85,7 +85,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -104,7 +104,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -123,7 +123,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -137,7 +137,7 @@ window#waybar.empty #window {
     padding-right: 10px;
     margin-bottom: 0px;
     border-radius: 10px;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -161,7 +161,7 @@ window#waybar.empty #window {
     border-radius: 10px;
     transition: none;
     color: @color15;
-    background: @background;
+    background: alpha(@background, 0.80);
     transition: 0.3s;
     border-bottom: 3px;
     border-style: solid;
@@ -179,7 +179,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -198,7 +198,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -221,7 +221,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -238,7 +238,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -257,7 +257,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     padding: 8px;
     border-bottom: 3px;
@@ -271,7 +271,7 @@ window#waybar.empty #window {
 }
 #pulseaudio.muted {
     color: @color15;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     border-bottom: 3px;
     border-style: solid;
     border-color: @color14;
@@ -290,7 +290,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -309,7 +309,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -328,7 +328,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -343,7 +343,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -374,7 +374,7 @@ window#waybar.empty #window {
     padding-right: 10px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -394,7 +394,7 @@ window#waybar.empty #window {
     padding-right: 10px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -415,7 +415,7 @@ window#waybar.empty #window {
     border-radius: 10px;
     transition: none;
     color: @color15;
-    background: @background;
+    background: alpha(@background, 0.80);
     transition: 0.3s;
     border-bottom: 3px;
     border-style: solid;
@@ -427,7 +427,7 @@ window#waybar.empty #window {
 }
 #network.disconnected {
     color: @color15;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     border-bottom: 3px;
     border-style: solid;
     border-color: @color14;
@@ -446,7 +446,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -464,7 +464,7 @@ window#waybar.empty #window {
     margin-left: 8px;
     padding-left: 5px;
     padding-right: 5px;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     border-bottom: 3px;
     border-style: solid;
     border-color: @color14;
@@ -506,7 +506,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
@@ -521,7 +521,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: @background; 
+    background: alpha(@background, 0.80); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;

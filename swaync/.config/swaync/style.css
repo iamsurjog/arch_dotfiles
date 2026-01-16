@@ -16,7 +16,7 @@
 @define-color bg-selected @color1;
 
 * {
-    font-family: "Product Sans";
+    font-family: "Kode Mono";
 }
 .notification-row {
   outline: none;
@@ -267,7 +267,7 @@
 
 .control-center {
   /* The Control Center which contains the old notifications + widgets */
-  background: alpha(@cc-bg, 0.80);
+  background: alpha(@cc-bg, 0.40);
   color: @text-color;
   border: solid @noti-border-color 1px;
   border-radius: 10px;
