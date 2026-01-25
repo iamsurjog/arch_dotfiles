@@ -521,7 +521,7 @@ window#waybar.empty #window {
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
-    background: alpha(@background, 0.80); 
+    background: alpha(@background, 1); 
     color: @color15;
     border-bottom: 3px;
     border-style: solid;
