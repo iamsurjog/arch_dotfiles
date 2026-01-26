@@ -6,7 +6,7 @@ cp $1 ~/Pictures/wallpaper.png
 # swww img ~/Pictures/wallpaper.png -t grow --transition-duration 1
 killall -SIGUSR2 waybar 
 swaync-client -rs
-notify-send -i dialog-information-symbolic "Changing wallpaper and colorscheme" "Waypaper at work"
+notify-send -i color "Changing wallpaper and colorscheme" "Waypaper at work" -a "Waypaper"
 killall quickshell
 cp ~/.cache/temp/Colours.qml ~/.config/quickshell/popout/services/Colours.qml
 rm ~/.cache/temp/Colours.qml
