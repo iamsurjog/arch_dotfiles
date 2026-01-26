@@ -102,6 +102,7 @@ FreezeScreen {
             `wl-copy < "${outputPath}" && ` +
             `rm "${tempPath}"`
         ]
+        Quickshell.execDetached(["notify-send", "-i", "clipboard", "-a", "Hyprquickshot", "Screenshot Taken", "Copied to Clipboard"])
 
         screenshotProcess.running = true
         root.visible = false
