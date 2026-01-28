@@ -39,6 +39,7 @@ window#waybar.empty #window {
     background: @color14;
 }
 
+#custom-wishlist,
 #custom-notification,
 #custom-workgroup {
     margin-top: 10px;
@@ -55,6 +56,7 @@ window#waybar.empty #window {
     border-color: @color14;
     transition: 0.3s;
 }
+#custom-wishlist:hover,
 #custom-notification:hover,
 #custom-workgroup:hover{
     color: @background; 
