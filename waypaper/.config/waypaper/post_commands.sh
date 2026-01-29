@@ -1,8 +1,12 @@
 #!/bin/bash
 
 echo "Wallpaper being used is $1"
+echo "$2"
 wallust run $1
 cp $1 ~/Pictures/wallpaper.png
+if [[ "$1" != *_themed* ]]; then
+    cp $1 ~/Pictures/wallpaper_def.png
+fi
 # swww img ~/Pictures/wallpaper.png -t grow --transition-duration 1
 killall -SIGUSR2 waybar 
 swaync-client -rs

@@ -112,3 +112,8 @@ eval "$(fnm env)"
 
 eval "$(atuin init zsh)"
 bindkey '^ ' autosuggest-accept
+
+fpath=(~/ $fpath)
+
+autoload -Uz compinit
+compinit
