@@ -18,7 +18,7 @@ FreezeScreen {
     Settings {
         id: settings
         category: "Hyprquickshot"
-        property bool saveToDisk: true 
+        property bool saveToDisk: false 
     }
 
     Connections {
@@ -146,79 +146,6 @@ FreezeScreen {
         radius: 12
         margin: 8
 
-		Row {
-			id: settingRow
-			spacing: 25
-		
-			Row {
-				id: buttonRow
-				spacing: 8
-	 
-				Repeater {
-					model: [
-						{ mode: "region", icon: "region" },
-						{ mode: "window", icon: "window" },
-						{ mode: "screen", icon: "screen" }
-					]
-	 
-					Button {
-						id: modeButton
-						implicitWidth: 48
-						implicitHeight: 48
 
-						background: Rectangle {
-							radius: 8
-							color: {
-								if(mode === modelData.mode) return Qt.rgba(0.3, 0.4, 0.7, 0.5)
-								if (modeButton.hovered) return Qt.rgba(0.4, 0.4, 0.4, 0.5)
-
-								return Qt.rgba(0.3, 0.3, 0.35, 0.5)
-							}
-
-							Behavior on color { ColorAnimation { duration: 100 } }
-						}
-
-						contentItem: Item {
-							anchors.fill: parent
-
-							Image {
-								anchors.centerIn: parent
-								width: 24
-								height: 24
-								source: Quickshell.shellPath(`icons/${modelData.icon}.svg`)
-								fillMode: Image.PreserveAspectFit
-							}
-						}
-
-						onClicked: {
-							root.mode = modelData.mode
-							if (modelData.mode === "screen") {
-								processScreenshot(0, 0, root.targetScreen.width, root.targetScreen.height)
-							}
-						}
-					}
-				}
-			}
-			
-			Row {
-				id: switchRow
-				spacing: 8
-				anchors.verticalCenter: buttonRow.verticalCenter
-
-				Text {
-					text: "Save to disk"
-					color: "#ffffff"
-					font.pixelSize: 14
-					verticalAlignment: Text.AlignVCenter
-					anchors.verticalCenter: parent.verticalCenter
-				}
-
-				Switch {
-					id: saveSwitch
-					checked: settings.saveToDisk
-					onCheckedChanged: settings.saveToDisk = checked
-				}
-			}
-		}
     }
 }
