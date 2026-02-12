@@ -102,7 +102,11 @@ python_venv
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+pyenv() {
+    eval "$(command pyenv init -)"
+
+    pyenv "$@"
+}
 
 eval "$(zoxide init zsh)"
 
@@ -117,3 +121,7 @@ fpath=(~/ $fpath)
 
 autoload -Uz compinit
 compinit
+
+# Created by `pipx` on 2026-02-07 11:10:08
+export PATH="$PATH:/home/randomguy/.local/bin"
+export PATH=/run/user/1000/fnm_multishells/33292_1770701770597/bin:/home/randomguy/surjo/path:/home/randomguy/surjo/college/softwares:/home/randomguy/go/bin/:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/home/randomguy/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:/home/randomguy/.local/bin:/home/randomguy/.local/bin:/home/randomguy/bin
