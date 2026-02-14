@@ -15,6 +15,3 @@ max_volume = 150
 # playerctl_format = "{artist} - {title}"
 ## Available values:
 ## artist, albumArtist, title, album, trackNumber, discNumber, autoRating
-
-[client]
-
