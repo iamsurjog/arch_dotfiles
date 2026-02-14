@@ -1,3 +1,7 @@
+//@ pragma UseQApplication
+//@ pragma Env QT_QUICK_CONTROLS_STYLE=Basic
+
+
 import Quickshell
 import Quickshell.Io // for Process
 import QtQuick
@@ -6,6 +10,7 @@ import Qt.labs.folderlistmodel
 PanelWindow {
     id: mainWindow
     property bool hovering: false
+    property string path: "/home/randomguy/surjo/todos/"
     color: "transparent"
     anchors {
         right: true
@@ -56,7 +61,7 @@ PanelWindow {
     FolderListModel {
         id: folderModel
 
-        folder: "file:///home/randomguy/surjo/tasks/"   // MUST be file:// URL
+        folder: "file://" + path   // MUST be file:// URL
         showDirs: true
         showFiles: true
         nameFilters: ["*"]        // or ["*.txt"]
@@ -67,9 +72,9 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        radius: 12
-        color: colors.background  // Your background color
-        border.width: 1
+        radius: 10
+        color: "transparent"  // Your background color
+        border.width: 2
         border.color: colors.color14  // Optional
 
         layer.enabled: true  // Enables smooth rendering for radius/clip
@@ -80,6 +85,9 @@ PanelWindow {
         HoverHandler {
             onHoveredChanged: hovering = hovered
         }
+
+
+
         Flickable {
             anchors.fill: parent
             contentHeight: column.height
@@ -87,7 +95,28 @@ PanelWindow {
 
             Column {
                 id: column
-                width: parent.width
+                width: parent.width - 2
+                Rectangle {
+                    id: myButton
+                    width: parent.width
+                    height: 40
+                    color: mouseArea.pressed ? colors.color2 : colors.color12
+                    radius: 5 // Optional: rounded corners
+
+                    Text {
+                        anchors.centerIn: parent
+                        text: "Add Task"
+                    }
+
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        onClicked: {
+                            onClicked: Quickshell.execDetached(["kitty", "nvim", path])
+
+                        }
+                    }
+                }
 
                 Repeater {
                     model: folderModel
@@ -95,7 +124,7 @@ PanelWindow {
                         width: column.width
                         height: 40
                         radius: 8
-                        color: hover ? colors.color2 : "transparent"
+                        color: hover ? colors.color11 : "transparent"
 
                         property bool hover: false
 
