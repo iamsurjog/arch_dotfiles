@@ -97,5 +97,10 @@ obsidian.target = '~/surjo/vaults/brain/.obsidian/snippets/wal.css'
 obsidian_accent.template = 'colors-obsidian.json'
 obsidian_accent.target = '~/surjo/vaults/brain/.obsidian/app.json'
 
+sidebar.template = 'colors-sidebar.json'
+sidebar.target = '~/.config/quickshell/sidebar/colors.json'
+
 gtk3.template = 'colors-gtk3.css'
 gtk3.target = '~/.config/gtk-3.0/gtk.css'
+
+
