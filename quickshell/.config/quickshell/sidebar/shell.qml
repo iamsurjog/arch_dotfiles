@@ -20,7 +20,7 @@ PanelWindow {
         right: hovering ? 0 : -width + 2
         bottom: 5
     }
-    implicitHeight: Screen.desktopAvailableHeight - 60
+    implicitHeight: Screen.height - 60
     aboveWindows: true
     exclusionMode: "Ignore"
     // exclusiveZone: 1
@@ -102,9 +102,12 @@ PanelWindow {
                     width: parent.width
                     height: 40
                     color: mouseArea.pressed ? colors.color2 : colors.color12
-                    radius: 5 // Optional: rounded corners
+                    radius: 10 // Optional: rounded corners
                     border.width: 2
                     border.color: colors.color14  // Optional
+                    Behavior on color {
+                        ColorAnimation { duration: 120 }
+                    }
 
                     Text {
                         anchors.centerIn: parent
@@ -127,7 +130,7 @@ PanelWindow {
                         width: column.width
                         height: 40
                         radius: 8
-                        color: hover ? colors.color11 : "transparent"
+                        color: hover ? colors.color15 : "transparent"
 
                         property bool hover: false
 
@@ -175,7 +178,7 @@ PanelWindow {
 
                                 MouseArea {
                                     anchors.fill: parent
-                                    onClicked: Quickshell.execDetached(["rm", "-f", filePath])
+                                    onClicked: Quickshell.execDetached(["mv", filePath, path + "/done/" + fileName])
                                 }
                             }
                         }
