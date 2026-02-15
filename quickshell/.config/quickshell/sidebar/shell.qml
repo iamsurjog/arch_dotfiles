@@ -22,7 +22,8 @@ PanelWindow {
     }
     implicitHeight: Screen.desktopAvailableHeight - 60
     aboveWindows: true
-    exclusiveZone: 1
+    exclusionMode: "Ignore"
+    // exclusiveZone: 1
     implicitWidth: 500
     FileView {
         path: Quickshell.shellPath("colors.json")
@@ -102,6 +103,8 @@ PanelWindow {
                     height: 40
                     color: mouseArea.pressed ? colors.color2 : colors.color12
                     radius: 5 // Optional: rounded corners
+                    border.width: 2
+                    border.color: colors.color14  // Optional
 
                     Text {
                         anchors.centerIn: parent

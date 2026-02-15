@@ -100,13 +100,13 @@ add-zsh-hook chpwd python_venv
 
 python_venv
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-pyenv() {
-    eval "$(command pyenv init -)"
-
-    pyenv "$@"
-}
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# pyenv() {
+#     eval "$(command pyenv init -)"
+#
+#     pyenv "$@"
+# }
 
 eval "$(zoxide init zsh)"
 
