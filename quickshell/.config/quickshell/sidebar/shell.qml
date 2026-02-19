@@ -63,9 +63,9 @@ PanelWindow {
         id: folderModel
 
         folder: "file://" + path   // MUST be file:// URL
-        showDirs: true
+        showDirs: false
         showFiles: true
-        nameFilters: ["*"]        // or ["*.txt"]
+        nameFilters: ["*.sh"]        // or ["*.txt"]
         sortField: FolderListModel.Name
         sortReversed: false
     }
@@ -131,6 +131,7 @@ PanelWindow {
                         height: 40
                         radius: 8
                         color: hover ? colors.color15 : "transparent"
+                        id: bound
 
                         property bool hover: false
 
@@ -145,7 +146,10 @@ PanelWindow {
 
                             Text {
                                 text: fileBaseName
-                                color: colors.foreground
+                                color: bound.hover? colors.background : colors.foreground
+                                Behavior on color {
+                                    ColorAnimation { duration: 120 }
+                                }
                                 font.family: "Kode Mono"
                                 font.pixelSize: 18
                                 width: parent.width - 80
@@ -159,9 +163,12 @@ PanelWindow {
                             // ✔ open
                             Text {
                                 text: "🖉"
-                                color: colors.foreground
+                                color: bound.hover? colors.background : colors.foreground
                                 font.family: "Kode Mono"
                                 font.pixelSize: 18
+                                Behavior on color {
+                                    ColorAnimation { duration: 120 }
+                                }
 
                                 MouseArea {
                                     anchors.fill: parent
@@ -173,8 +180,11 @@ PanelWindow {
                             Text {
                                 text: "✖"
                                 font.pixelSize: 18
-                                color: colors.foreground
+                                color: bound.hover? colors.background : colors.foreground
                                 font.family: "Kode Mono"
+                                Behavior on color {
+                                    ColorAnimation { duration: 120 }
+                                }
 
                                 MouseArea {
                                     anchors.fill: parent
