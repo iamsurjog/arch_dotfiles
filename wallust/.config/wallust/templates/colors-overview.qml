@@ -4,10 +4,13 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import "functions"
+import "." as Common
 
 Singleton {
     id: root
-    property QtObject m3colors
+    property QtObject m3colors: Common.Config.options.appearance.useMatugenColors && matugenLoader.item 
+                                 ? matugenLoader.item 
+                                 : defaultColors
     property QtObject animation
     property QtObject animationCurves
     property QtObject colors
@@ -15,38 +18,39 @@ Singleton {
     property QtObject font
     property QtObject sizes
 
-    m3colors: QtObject {
+    Loader {
+        id: matugenLoader
+        active: Common.Config.options.appearance.useMatugenColors
+        source: "Appearance.colors.qml"
+    }
+
+    property QtObject defaultColors: QtObject {
         property bool darkmode: true
 
         property color m3primary: "{{ color13 }}"
         property color m3onPrimary: "{{ background }}"
         property color m3primaryContainer: "{{ color1 }}"
         property color m3onPrimaryContainer: "{{ foreground }}"
-
         property color m3secondary: "{{ color11 }}"
         property color m3onSecondary: "{{ background }}"
         property color m3secondaryContainer: "{{ color1 }}"
         property color m3onSecondaryContainer: "{{ foreground }}"
-
         property color m3background: "{{ background }}"
         property color m3onBackground: "{{ foreground }}"
-
         property color m3surface: "{{ background }}"
         property color m3surfaceContainerLow: "{{ color0 }}"
         property color m3surfaceContainer: "{{ color0 }}"
         property color m3surfaceContainerHigh: "{{ color8 }}"
         property color m3surfaceContainerHighest: "{{ color7 }}"
         property color m3onSurface: "{{ foreground }}"
-
         property color m3surfaceVariant: "{{ color4 }}"
         property color m3onSurfaceVariant: "{{ color7 }}"
-
         property color m3inverseSurface: "{{ foreground }}"
         property color m3inverseOnSurface: "{{ background }}"
-
         property color m3outline: "{{ color8 }}"
         property color m3outlineVariant: "{{ color4 }}"
         property color m3shadow: "#000000"
+
     }
 
     colors: QtObject {
@@ -75,28 +79,28 @@ Singleton {
     }
 
     rounding: QtObject {
-        property int unsharpen: 2
-        property int verysmall: 8
-        property int small: 12
-        property int normal: 17
-        property int large: 23
-        property int full: 9999
-        property int screenRounding: large
-        property int windowRounding: 18
+        property int unsharpen: Common.Config.options.appearance.rounding.unsharpen
+        property int verysmall: Common.Config.options.appearance.rounding.verysmall
+        property int small: Common.Config.options.appearance.rounding.small
+        property int normal: Common.Config.options.appearance.rounding.normal
+        property int large: Common.Config.options.appearance.rounding.large
+        property int full: Common.Config.options.appearance.rounding.full
+        property int screenRounding: Common.Config.options.appearance.rounding.screenRounding
+        property int windowRounding: Common.Config.options.appearance.rounding.windowRounding
     }
 
     font: QtObject {
         property QtObject family: QtObject {
-            property string main: "sans-serif"
-            property string title: "sans-serif"
-            property string expressive: "sans-serif"
+            property string main: Common.Config.options.appearance.font.family.main
+            property string title: Common.Config.options.appearance.font.family.title
+            property string expressive: Common.Config.options.appearance.font.family.expressive
         }
         property QtObject pixelSize: QtObject {
-            property int smaller: 12
-            property int small: 15
-            property int normal: 16
-            property int larger: 19
-            property int huge: 22
+            property int smaller: Common.Config.options.appearance.font.pixelSize.smaller
+            property int small: Common.Config.options.appearance.font.pixelSize.small
+            property int normal: Common.Config.options.appearance.font.pixelSize.normal
+            property int larger: Common.Config.options.appearance.font.pixelSize.larger
+            property int huge: Common.Config.options.appearance.font.pixelSize.huge
         }
     }
 
@@ -104,8 +108,8 @@ Singleton {
         readonly property list<real> expressiveDefaultSpatial: [0.38, 1.21, 0.22, 1.00, 1, 1]
         readonly property list<real> expressiveEffects: [0.34, 0.80, 0.34, 1.00, 1, 1]
         readonly property list<real> emphasizedDecel: [0.05, 0.7, 0.1, 1, 1, 1]
-        readonly property real expressiveDefaultSpatialDuration: 500
-        readonly property real expressiveEffectsDuration: 200
+        readonly property real expressiveDefaultSpatialDuration: Common.Config.options.appearance.animation.duration.elementMove
+        readonly property real expressiveEffectsDuration: Common.Config.options.appearance.animation.duration.elementMoveFast
     }
 
     animation: QtObject {
@@ -123,7 +127,7 @@ Singleton {
         }
 
         property QtObject elementMoveEnter: QtObject {
-            property int duration: 400
+            property int duration: Common.Config.options.appearance.animation.duration.elementMoveEnter
             property int type: Easing.BezierSpline
             property list<real> bezierCurve: animationCurves.emphasizedDecel
             property Component numberAnimation: Component {
@@ -150,7 +154,7 @@ Singleton {
     }
 
     sizes: QtObject {
-        property real elevationMargin: 10
+        property real elevationMargin: Common.Config.options.appearance.sizes.elevationMargin
     }
 }
 
