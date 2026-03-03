@@ -103,4 +103,5 @@ sidebar.target = '~/.config/quickshell/sidebar/colors.json'
 gtk3.template = 'colors-gtk3.css'
 gtk3.target = '~/.config/gtk-3.0/gtk.css'
 
-
+hyprquickpaper.template = 'colors-hyprquickpaper.json'
+hyprquickpaper.target = '~/.config/quickshell/hyprquickpaper/config.json'
