@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "Wallpaper being used is $1"
-echo "$2"
 wallust run $1
 cp $1 ~/Pictures/wallpaper.png
 if [[ "$1" != *_themed* ]]; then
