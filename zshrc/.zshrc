@@ -9,6 +9,7 @@
 #   exec tmux
 # fi
 
+alias n2='NVIM_APPNAME=nvim2 nvim'
 alias n='nvim'
 alias l='eza -alh'
 alias ls='eza -alh --icons --git'
@@ -42,6 +43,7 @@ export GOBIN="$HOME/go/bin/"
 export PATH="$GOBIN:$PATH"
 export PATH="/home/randomguy/surjo/college/softwares:$PATH"
 export PATH="/home/randomguy/surjo/path:$PATH"
+export VCPKG_ROOT="$HOME/.local/share/vcpkg"
 
 # ----------------------------------------
 # Completion System Setup (Optimized)
