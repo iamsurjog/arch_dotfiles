@@ -45,7 +45,7 @@ window#waybar.empty #window {
     margin-top: 10px;
     margin-left: 8px;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 13px;
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
@@ -441,12 +441,12 @@ window#waybar.empty #window {
     color: @background; 
 }
 #custom-power {
-    font-size: 25;
+    font-size: 15;
     margin-top: 10px;
     margin-left: 8px;
     margin-right: 5px;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 15px;
     margin-bottom: 0px;
     border-radius: 10px;
     transition: none;
