@@ -103,7 +103,7 @@ PanelWindow {
 
 
 
-        Flickable {
+        ListView {
             anchors.fill: parent
             contentHeight: column.height
             clip: true
