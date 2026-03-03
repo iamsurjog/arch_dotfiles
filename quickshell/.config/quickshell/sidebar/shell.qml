@@ -10,7 +10,6 @@ import Qt.labs.folderlistmodel
 PanelWindow {
     id: mainWindow
     property bool hovering: false
-    property string path: "/home/randomguy/surjo/todos/"
     color: "transparent"
     anchors {
         right: true
@@ -25,6 +24,21 @@ PanelWindow {
     exclusionMode: "Ignore"
     // exclusiveZone: 1
     implicitWidth: 500
+    FileView {
+        path: Quickshell.shellPath("config.json")
+
+        // when changes are made on disk, reload the file's content
+        watchChanges: true
+        onFileChanged: this.reload()
+
+        // when changes are made to properties in the adapter, save them
+        onAdapterUpdated: writeAdapter()
+
+        JsonAdapter {
+            id: configs
+            property string todo_path
+        }
+    }
     FileView {
         path: Quickshell.shellPath("colors.json")
 
@@ -62,7 +76,7 @@ PanelWindow {
     FolderListModel {
         id: folderModel
 
-        folder: "file://" + path   // MUST be file:// URL
+        folder: "file://" + configs.todo_path   // MUST be file:// URL
         showDirs: false
         showFiles: true
         nameFilters: ["*.sh"]        // or ["*.txt"]
@@ -118,7 +132,7 @@ PanelWindow {
                         id: mouseArea
                         anchors.fill: parent
                         onClicked: {
-                            onClicked: Quickshell.execDetached(["kitty", "nvim", path])
+                            onClicked: Quickshell.execDetached(["kitty", "nvim", configs.todo_path])
 
                         }
                     }
@@ -188,7 +202,7 @@ PanelWindow {
 
                                 MouseArea {
                                     anchors.fill: parent
-                                    onClicked: Quickshell.execDetached(["mv", filePath, path + "/done/" + fileName])
+                                    onClicked: Quickshell.execDetached(["mv", filePath, configs.todo_path + "/done/" + fileName])
                                 }
                             }
                         }
