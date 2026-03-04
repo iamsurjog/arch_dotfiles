@@ -1,9 +1,6 @@
 [submodule "quickshell/.config/quickshell/hyprquickpaper"]
 	path = quickshell/.config/quickshell/hyprquickpaper
 	url = https://github.com/iamsurjog/hyprquickpaper
-[submodule "quickshell/.config/quickshell/overview"]
-	path = quickshell/.config/quickshell/overview
-	url = https://github.com/Shanu-Kumawat/quickshell-overview
 [submodule "quickshell/.config/quickshell/sidebar"]
 	path = quickshell/.config/quickshell/sidebar
 	url = https://github.com/iamsurjog/hyprtodo
