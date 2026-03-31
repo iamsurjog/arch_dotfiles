@@ -6,7 +6,7 @@ import "modules/lock"
 import Quickshell
 
 ShellRoot {
-    Drawers {}
+    // Drawers {}
     Lock {}
 
 }
