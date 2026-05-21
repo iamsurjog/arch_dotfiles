@@ -75,12 +75,6 @@ hl.window_rule({
     no_focus = true,
 })
 
-hl.window_rule({
-    name  = "waypaper-float",
-    match = { title = "^(satty)$" },
-    float = true,
-    size = {"monitor_w*0.75", "monitor_h*0.75"},
-})
 
 hl.window_rule({
     name  = "thunar-rename-float",
@@ -93,26 +87,21 @@ hl.window_rule({
 
 hl.window_rule({
     -- volume control window rule pavo
-    name  = "volume-control-float",
+    name  = "Pavu",
     match = { title = "^(Volume Control)$" },
     float = true,
+    move  = { "window_h*0.5", "window_w * 0.055" },
 })
 
-hl.window_rule({
-    -- volume control window rule pavo
-    name  = "volume-control-move",
-    match = { title = "^(Volume Control)$" },
-    move  = "50% 5.5%",
-})
 
 hl.window_rule({
-    name  = "firefox-pip-pin",
+    name  = "firefox-pip",
     match = {
         class = "^(firefox)$",
         title = "^(Picture-in-Picture)$",
     },
     pin   = true,
-    move  = "100%-w-5 58",
+    move  = { "100%-w-5", "58" },
     float = true,
 })
 
@@ -120,14 +109,23 @@ hl.window_rule({
     -- spotify window rule
     name  = "spotify-workspace",
     match = { class = "^(Spotify)$" },
-    workspace = "special:music",
+    workspace = "special:Music",
 })
 
 hl.window_rule({
     -- spotify window rule
     name  = "whatsapp-workspace",
     match = { initial_title = "^(Whatsapp)$" },
-    workspace = "special:chat",
+    workspace = "special:Chat",
+})
+
+hl.window_rule({
+    -- vesktop picture in picture
+    name  = "vesktop",
+    match = {
+        initial_title = "^(Discord)$",
+    },
+    workspace = "special:Discord",
 })
 
 hl.window_rule({
@@ -138,37 +136,19 @@ hl.window_rule({
         initial_title = "^(Discord Popout)$",
     },
     float = true,
-})
-
-hl.window_rule({
-    -- vesktop picture in picture
-    name  = "vesktop-pip-move",
-    match = {
-        initial_class = "^(vesktop)$",
-        initial_title = "^(Discord Popout)$",
-    },
     move  = "100% w-5",
-})
-
-hl.window_rule({
-    -- vesktop picture in picture
-    name  = "vesktop-pip-pin",
-    match = {
-        initial_class = "^(vesktop)$",
-        initial_title = "^(Discord Popout)$",
-    },
     pin   = true,
 })
 
+
 hl.window_rule({
-    -- window transparency
-    name  = "obsidian-opacity",
-    match = { initial_title = "^(brain - Obsidian).*$" },
+    name  = "obsidian",
+    match = { initial_title = "^(.* - Obsidian).*$" },
     opacity = "0.9 0.8",
+    workspace = "special:Task",
 })
 
 hl.window_rule({
-    -- window transparency
     name  = "thunar-opacity",
     match = { class = "^(thunar)$" },
     opacity = "0.8 0.7",

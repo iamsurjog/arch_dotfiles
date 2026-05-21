@@ -100,6 +100,8 @@ hl.bind(mainMod .. " + B", hl.dsp.workspace.toggle_special("bg"))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.window.move({ workspace = "special:bg" }))
 hl.bind(mainMod .. " + G", hl.dsp.workspace.toggle_special("Gaem"))
 hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ workspace = "special:Gaem" }))
+hl.bind(mainMod .. " + D", hl.dsp.workspace.toggle_special("Discord"))
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:Discord" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + equal", hl.dsp.focus({ workspace = "+1" }))
