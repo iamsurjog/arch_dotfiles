@@ -4,7 +4,7 @@ btop/.config/btop/themes/caelestia.theme
 spicetify/.config/spicetify/Themes/caelestia/color.ini
 hypr/.config/hypr/scheme/current.conf
 hypr/.config/hypr/scheme/current.conf
-hypr/.config/hypr/colors-hyprland.conf
+hypr/.config/hypr/colors-hyprland.lua
 kitty/.config/kitty/colors.conf
 rofi/.config/rofi/colors.rasi
 spicetify/.config/spicetify/Themes/text/color.ini
