@@ -111,7 +111,8 @@ hl.bind(mainMod .. " + CTRL + equal", function()
 end)
 hl.bind(mainMod .. " + CTRL + minus", function()
     hl.dispatch(hl.dsp.focus({ workspace = "-10" }))
-    group = group - 1
+    group = math.max(0, group - 1)
+
 end)
 hl.bind(mainMod .. " + CTRL + SHIFT + equal", function()
     hl.dispatch(hl.dsp.window.move({ workspace = "+10" }))
