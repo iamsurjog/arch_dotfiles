@@ -4,7 +4,6 @@ btop/.config/btop/themes/caelestia.theme
 spicetify/.config/spicetify/Themes/caelestia/color.ini
 hypr/.config/hypr/scheme/current.conf
 hypr/.config/hypr/scheme/current.conf
-hypr/.config/hypr/colors-hyprland.lua
 kitty/.config/kitty/colors.conf
 rofi/.config/rofi/colors.rasi
 spicetify/.config/spicetify/Themes/text/color.ini
@@ -19,3 +18,4 @@ quickshell/.config/quickshell/overview/common/Appearance.qml
 quickshell/.config/quickshell/popout/services/Colours.qml
 hypr/.config/hypr/scripts/workspace.txt
 quickshell/.config/quickshell/sidebar/colors.json
+/hypr/.config/hypr/colors-hyprland.lua

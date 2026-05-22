@@ -60,21 +60,24 @@ hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 
-hl.bind(mainMod .. " + TAB", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(mainMod .. " + TAB", function ()
+    hl.dispatch( hl.dsp.focus({ workspace = "previous" }) )
+    CloseSpecialWorkspace()
+end)
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    
+
     -- Dynamic switching
     hl.bind(mainMod .. " + " .. key, function()
         CloseSpecialWorkspace()
-        
+
         -- Calculate workspace on-the-fly using the live 'group' value
         local target_workspace_id = i + (group * 10)
         local target_ws = hl.get_workspace(target_workspace_id)
-        
+
         hl.dispatch(hl.dsp.focus({ workspace = target_workspace_id }))
 
         if target_ws and target_ws.last_window then
@@ -103,16 +106,26 @@ hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ workspace = "special:Gae
 hl.bind(mainMod .. " + D", hl.dsp.workspace.toggle_special("Discord"))
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:Discord" }))
 
--- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + equal", hl.dsp.focus({ workspace = "+1" }))
+-- Scroll through existing workspaces with mainMod + +/-
+hl.bind(mainMod .. " + equal", function()
+    hl.dispatch(hl.dsp.focus({ workspace = "+1" }))
+    CloseSpecialWorkspace()
+end)
+hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.window.move({ workspace = "+1" }))
+hl.bind(mainMod .. " + minus", function()
+    hl.dispatch(hl.dsp.focus({ workspace = "-1" }))
+    CloseSpecialWorkspace()
+end)
+hl.bind(mainMod .. " + SHIFT + minus", hl.dsp.window.move({ workspace = "-1" }))
 hl.bind(mainMod .. " + CTRL + equal", function()
     hl.dispatch(hl.dsp.focus({ workspace = "+10" }))
     group = group + 1
+    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + CTRL + minus", function()
     hl.dispatch(hl.dsp.focus({ workspace = "-10" }))
     group = math.max(0, group - 1)
-
+    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + CTRL + SHIFT + equal", function()
     hl.dispatch(hl.dsp.window.move({ workspace = "+10" }))
@@ -122,9 +135,6 @@ hl.bind(mainMod .. " + CTRL + SHIFT + minus", function()
     hl.dispatch(hl.dsp.window.move({ workspace = "-10" }))
     group = group - 1
 end)
-hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.window.move({ workspace = "+1" }))
-hl.bind(mainMod .. " + minus", hl.dsp.focus({ workspace = "-1" }))
-hl.bind(mainMod .. " + SHIFT + minus", hl.dsp.window.move({ workspace = "-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
