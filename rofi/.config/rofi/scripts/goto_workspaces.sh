@@ -2,19 +2,15 @@ wkspc=$(hyprctl workspaces -j | jq -r '.[].name' | rofi -no-show-icons -keep-rig
 
 if [ -n "$wkspc" ]; then
     if [[ "$wkspc" =~ ^[0-9]+$ ]]; then
-        hyprctl dispatch workspace "$wkspc"
-        active=$(hyprctl -j monitors | jq --raw-output '.[] | select(.focused==true).specialWorkspace.name | split(":") | if length > 1 then .[1] else "" end')
+        hyprctl dispatch "hl.dsp.focus({ workspace =\"$wkspc\"})"
+        active_special=$(hyprctl monitors -j | jq -r '.[] | select(.focused==true).specialWorkspace.name | sub("special:"; "")')
 
-        if [[ ${#active} -gt 0 ]]; then
-            hyprctl dispatch togglespecialworkspace "$active"
+        if [ -n "$active_special" ]; then
+            hyprctl dispatch "hl.dsp.workspace.toggle_special({ name = \"$active\" })"
+            hyprctl dispatch "hl.dsp.workspace.toggle_special({ name = special })"
         fi
     else
-        if hyprctl workspaces -j | jq -r '.[].name' | grep -qx "$wkspc"; then
-            echo "$wkspc"
-            hyprctl dispatch workspace "$wkspc"
-        else
-            hyprctl dispatch workspace "special:$wkspc"
-            # hyprctl dispatch workspace "special:$wkspc"
-        fi
+        hyprctl dispatch "hl.dsp.focus({ workspace = \"$wkspc\"})"
     fi
 fi
+

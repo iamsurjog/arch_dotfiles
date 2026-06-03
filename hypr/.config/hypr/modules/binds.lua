@@ -53,6 +53,8 @@ hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("killall waybar"))
 
 -- hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("~/.config/rofi/scripts/goto_workspaces.sh"))
+hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("~/.config/rofi/scripts/moveto_workspace.sh"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
@@ -63,6 +65,7 @@ hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + TAB", function ()
     hl.dispatch( hl.dsp.focus({ workspace = "previous" }) )
     CloseSpecialWorkspace()
+    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 -- Switch workspaces with mainMod + [0-9]
@@ -72,6 +75,7 @@ for i = 1, 10 do
 
     -- Dynamic switching
     hl.bind(mainMod .. " + " .. key, function()
+        CloseSpecialWorkspace()
         CloseSpecialWorkspace()
 
         -- Calculate workspace on-the-fly using the live 'group' value
@@ -110,10 +114,12 @@ hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:Dis
 hl.bind(mainMod .. " + equal", function()
     hl.dispatch(hl.dsp.focus({ workspace = "+1" }))
     CloseSpecialWorkspace()
+    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.window.move({ workspace = "+1" }))
 hl.bind(mainMod .. " + minus", function()
     hl.dispatch(hl.dsp.focus({ workspace = "-1" }))
+    CloseSpecialWorkspace()
     CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + SHIFT + minus", hl.dsp.window.move({ workspace = "-1" }))
@@ -121,10 +127,12 @@ hl.bind(mainMod .. " + CTRL + equal", function()
     hl.dispatch(hl.dsp.focus({ workspace = "+10" }))
     group = group + 1
     CloseSpecialWorkspace()
+    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + CTRL + minus", function()
     hl.dispatch(hl.dsp.focus({ workspace = "-10" }))
     group = math.max(0, group - 1)
+    CloseSpecialWorkspace()
     CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + CTRL + SHIFT + equal", function()
@@ -141,16 +149,16 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"),
-    { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"),
-    { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"), { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"),
     { locked = true, repeating = true })
 -- hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --brightness raise"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lower"),
     { locked = true, repeating = true })
+hl.bind("CTRL + Prior", hl.dsp.exec_cmd("swayosd-client --input-volume raise"), { locked = true, repeating = true })
+hl.bind("CTRL + Next", hl.dsp.exec_cmd("swayosd-client --input-volume lower"), { locked = true, repeating = true })
 hl.bind("Prior", hl.dsp.exec_cmd("swayosd-client --brightness raise"), { locked = true, repeating = true })
 hl.bind("Next", hl.dsp.exec_cmd("swayosd-client --brightness lower"), { locked = true, repeating = true })
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("pkill rofi || rofi -show calc"), { locked = true, repeating = true })
