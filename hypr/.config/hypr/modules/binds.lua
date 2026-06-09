@@ -8,11 +8,23 @@ local fileManager = "thunar"
 local menu        = "rofi -show drun"
 local browser     = "firefox"
 
+
+function debug()
+    local current = hl.get_active_workspace()
+    local current_special = hl.get_active_special_workspace()
+    if current_special then
+        hl.dispatch(hl.dsp.exec_cmd("notify-send " .. current_special.config_name))
+    else
+        hl.dispatch(hl.dsp.exec_cmd("notify-send " .. current.config_name))
+    end
+end
+
 function CloseSpecialWorkspace()
     local current = hl.get_active_special_workspace()
     if current then
-        hl.dispatch(hl.dsp.workspace.toggle_special(current.config_name))
+        hl.dispatch(hl.dsp.workspace.toggle_special(string.gsub(current.config_name, "special:", "")))
     end
+    -- debug()
 end
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
@@ -76,7 +88,6 @@ for i = 1, 10 do
     -- Dynamic switching
     hl.bind(mainMod .. " + " .. key, function()
         CloseSpecialWorkspace()
-        CloseSpecialWorkspace()
 
         -- Calculate workspace on-the-fly using the live 'group' value
         local target_workspace_id = i + (group * 10)
@@ -112,28 +123,24 @@ hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:Dis
 
 -- Scroll through existing workspaces with mainMod + +/-
 hl.bind(mainMod .. " + equal", function()
+    CloseSpecialWorkspace()
     hl.dispatch(hl.dsp.focus({ workspace = "+1" }))
-    CloseSpecialWorkspace()
-    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.window.move({ workspace = "+1" }))
 hl.bind(mainMod .. " + minus", function()
+    CloseSpecialWorkspace()
     hl.dispatch(hl.dsp.focus({ workspace = "-1" }))
-    CloseSpecialWorkspace()
-    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + SHIFT + minus", hl.dsp.window.move({ workspace = "-1" }))
 hl.bind(mainMod .. " + CTRL + equal", function()
+    CloseSpecialWorkspace()
     hl.dispatch(hl.dsp.focus({ workspace = "+10" }))
     group = group + 1
-    CloseSpecialWorkspace()
-    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + CTRL + minus", function()
+    CloseSpecialWorkspace()
     hl.dispatch(hl.dsp.focus({ workspace = "-10" }))
     group = math.max(0, group - 1)
-    CloseSpecialWorkspace()
-    CloseSpecialWorkspace()
 end)
 hl.bind(mainMod .. " + CTRL + SHIFT + equal", function()
     hl.dispatch(hl.dsp.window.move({ workspace = "+10" }))
