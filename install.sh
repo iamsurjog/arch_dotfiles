@@ -108,7 +108,7 @@ echo ""
 
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     rm -rf ~/.configs/nvim
-    git clone https://github.com/iamsurjog/nvim_dots/ ~/.configs/nvim
+    git clone https://github.com/iamsurjog/nvim_dots/ ~/.config/nvim
 else
     sleep 2
     echo "Skipping nvim configs"

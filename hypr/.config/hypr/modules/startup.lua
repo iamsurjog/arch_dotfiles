@@ -43,7 +43,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("cava-bg")
     hl.exec_cmd("tery")
     hl.exec_cmd("obsidian")
-    hl.exec_cmd("firefoxpwa site launch 01KTRNY4TQ7P6ENTKPFAR3N935")
+    hl.exec_cmd("firefoxpwa site launch 01KVFRT68ZC54W4FFRAW6HH3Q8")
     hl.exec_cmd("/home/randomguy/.scripts/wayclick/wayclick.sh ")
 
     hl.exec_cmd("kitty")
