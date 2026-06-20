@@ -25,6 +25,7 @@ hl.monitor({ output = "HEADLESS-3", mode = "1920x1080", position = "2000x0", sca
 --
 hl.on("hyprland.start", function () 
     -- necessary --
+    hl.exec_cmd("/usr/lib/xdg-desktop-portal")
     hl.exec_cmd("nm-applet & blueman-applet & swayosd-server & swaync & awww-daemon & ")
     hl.exec_cmd("wl-paste --type text --watch cliphist store") -- Text --
     hl.exec_cmd("wl-paste --type image --watch cliphist store") -- Images --
