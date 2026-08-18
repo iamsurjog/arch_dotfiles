@@ -28,6 +28,7 @@ function CloseSpecialWorkspace()
 end
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+-- local mainMod = "ALT" -- Sets "ALT" key as main modifier
 -- hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.window.move({ workspace = "+1" }))
 -- hl.bind(mainMod .. " + minus",   hl.dsp.focus({ workspace = "-1" }))
 -- hl.bind(mainMod .. " + SHIFT + minus", hl.dsp.window.move({ workspace = "-1" }))

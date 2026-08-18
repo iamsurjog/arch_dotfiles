@@ -26,6 +26,7 @@ hl.monitor({ output = "HEADLESS-3", mode = "1920x1080", position = "2000x0", sca
 hl.on("hyprland.start", function () 
     -- necessary --
     hl.exec_cmd("/usr/lib/xdg-desktop-portal")
+    hl.exec_cmd("systemctl --user start hyprland-session.target")
     hl.exec_cmd("nm-applet & blueman-applet & swayosd-server & swaync & awww-daemon & ")
     hl.exec_cmd("wl-paste --type text --watch cliphist store") -- Text --
     hl.exec_cmd("wl-paste --type image --watch cliphist store") -- Images --
@@ -48,6 +49,10 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("/home/randomguy/.scripts/wayclick/wayclick.sh ")
 
     hl.exec_cmd("kitty")
+end)
+
+hl.on("hyprland.shutdown", function()
+    os.execute("systemctl --user stop hyprland-session.target && sleep 0.1")
 end)
 
 

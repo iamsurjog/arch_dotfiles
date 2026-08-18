@@ -115,7 +115,7 @@ hl.window_rule({
 hl.window_rule({
     -- spotify window rule
     name  = "whatsapp-workspace",
-    match = { initial_title = "^(Whatsapp)$" },
+    match = { initial_title = "^(WhatsApp)$" },
     workspace = "special:Chat",
 })
 
