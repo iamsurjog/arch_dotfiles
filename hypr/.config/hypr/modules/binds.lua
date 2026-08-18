@@ -69,6 +69,7 @@ hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("killall waybar"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("~/.config/rofi/scripts/goto_workspaces.sh"))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("~/.config/rofi/scripts/moveto_workspace.sh"))
 
+
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
@@ -191,6 +192,10 @@ hl.bind(mainMod .. " + CTRL + SHIFT + C", hl.dsp.exec_cmd("hyprpicker | wl-copy"
 hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.exec_cmd("qs ipc -c quickshell-overview call overview toggle"))
 
 -- TODO: thgese binds
--- bind = $mainMod, SPACE, exec, ~/.config/rofi/scripts/goto_workspaces.sh
--- bind = $mainMod SHIFT, SPACE, exec, ~/.config/rofi/scripts/moveto_workspace.sh
 -- bind = $mainMod, s, exec, ~/.config/rofi/scripts/sess.sh
+
+
+-- Scrolling layout
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.layout("fit active"))
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.layout("swapcol l"))
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.layout("swapcol r"))
