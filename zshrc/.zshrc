@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 # ----------------------------------------
 # Environment & PATH Configuration
 # ----------------------------------------
@@ -63,12 +64,31 @@ fpath=(
 )
 
 # Fixed compilation dump cache check (Checks if modified in the last 24 hours)
-autoload -Uz compinit
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
-    compinit -C
-else
-    compinit
-fi
+# autoload -Uz compinit
+# if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+#     compinit -C
+# else
+#     compinit
+# fi
+
+source ~/.zsh-defer/zsh-defer.plugin.zsh
+
+_lazy_compinit() {
+  autoload -Uz compinit
+  typeset -g _zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  setopt LOCAL_OPTIONS EXTENDED_GLOB
+
+  if [[ -n ${_zcompdump}(#qN.m-1) ]]; then
+    compinit -C -d "$_zcompdump"
+  else
+    compinit -d "$_zcompdump"
+  fi
+
+  [[ ! "$_zcompdump.zwc" -nt "$_zcompdump" ]] && zcompile "$_zcompdump" 2>/dev/null &!
+}
+
+# Defers compinit until prompt is idle
+zsh-defer _lazy_compinit
 
 # Completion styles
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 
@@ -82,7 +102,7 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 # ----------------------------------------
 [[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init - --no-rehash zsh)"
 eval "$(zoxide init zsh)"
-eval "$(fnm env)"
+# eval "$(fnm env)"
 eval "$(atuin init zsh)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/negligible.omp.json)"
 
@@ -106,19 +126,10 @@ python_venv # Run once on startup if terminal opens into a venv directory
 # ----------------------------------------
 # Plugins (Must be sourced at the absolute end)
 # ----------------------------------------
-[[ -f /usr/share/nvm/init-nvm.sh ]]
-# Lazy load NVM only when called
-nvm() {
-    unset -f nvm node npm npx
-    [[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
-    nvm "$@"
-}
-# node() { unset -f nvm node npm npx; [[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh; node "$@"; }
-# npm()  { unset -f nvm node npm npx; [[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh; npm "$@"; }
-# npx()  { unset -f nvm node npm npx; [[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh; npx "$@"; }
 [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]] && source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 eval "$(direnv hook zsh)"
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
+# zprof
