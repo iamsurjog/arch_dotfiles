@@ -100,7 +100,7 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 # ----------------------------------------
 # Heavy CLI Tools Initializations (Optimized)
 # ----------------------------------------
-[[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init - --no-rehash zsh)"
+# [[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init - --no-rehash zsh)"
 eval "$(zoxide init zsh)"
 # eval "$(fnm env)"
 eval "$(atuin init zsh)"
