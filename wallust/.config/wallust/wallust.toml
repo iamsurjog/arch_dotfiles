@@ -104,7 +104,7 @@ gtk3.template = 'colors-gtk3.css'
 gtk3.target = '~/.config/gtk-3.0/gtk.css'
 
 hyprquickpaper.template = 'colors-hyprquickpaper.json'
-hyprquickpaper.target = '~/.config/quickshell/hyprquickpaper/config.json'
+hyprquickpaper.target = '~/.config/quickshell/hyprquickpaper/colors.json'
 
 cavabg.template = "colors-cavabg.toml"
 cavabg.target = "~/.config/cava-bg/config.toml"
