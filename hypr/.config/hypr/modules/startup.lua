@@ -47,7 +47,7 @@ hl.on("hyprland.start", function ()
     -- hl.exec_cmd("obsidian")
     -- hl.exec_cmd("firefoxpwa site launch 01KVFRT68ZC54W4FFRAW6HH3Q8")
     -- hl.exec_cmd("/home/randomguy/.scripts/wayclick/wayclick.sh ")
-    hl.exec_cmd("/home/randomguy/surjo/apps/timeBox/timeBox ")
+    hl.exec_cmd("/home/randomguy/surjo/apps/timeBox/timeBox")
 
     hl.exec_cmd("kitty")
 end)
