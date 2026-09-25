@@ -4,7 +4,7 @@ import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
 
-// import "modules"
+import "modules"
 import "components"
 
 PanelWindow {
@@ -17,6 +17,10 @@ PanelWindow {
     aboveWindows: true
     implicitHeight: Screen.height - paddingHeight
     implicitWidth: Screen.width - paddingWidth
+
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+
+    KeyBinds {}
 
     // Top Bar
     Rectangle {
@@ -49,12 +53,13 @@ PanelWindow {
             topMargin: 16 // Spacing from top edge
         }
 
-        CalendarComp    { Layout.fillWidth: true; Layout.fillHeight: true }
-        Workspaces      { Layout.fillWidth: true; Layout.fillHeight: true }
-        Todos           { Layout.fillWidth: true; Layout.fillHeight: true }
-        Notifications   { Layout.fillWidth: true; Layout.fillHeight: true }
-        SpWorkspaces    { Layout.fillWidth: true; Layout.fillHeight: true }
-        Calculator      { Layout.fillWidth: true; Layout.fillHeight: true }
+        // Setting preferred dimensions to 1 forces the layout to weigh all cells equally
+        CalendarComp   { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
+        Workspaces     { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
+        Todos          { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
+        Notifications  { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
+        SpWorkspaces   { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
+        Calculator     { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
     }
 
     FileView {

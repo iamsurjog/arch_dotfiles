@@ -1,18 +1,17 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
+import Quickshell.Wayland // Required for ScreencopyView
 
 Item {
     id: root
 
-    // Dynamically find the currently focused workspace ID in Hyprland
     property int currentActiveId: {
         let activeWorkspaces = Array.from(Hyprland.workspaces.values);
         let focusedWs = activeWorkspaces.find(ws => ws.focused);
         return focusedWs ? focusedWs.id : 1;
     }
 
-    // Your floor division formula: wkspId // 10 * 10 + 1
     property int startingId: Math.floor(currentActiveId / 10) * 10 + 1
 
     GridLayout {
@@ -25,7 +24,6 @@ Item {
             model: 9 
 
             Rectangle {
-                // Add the index (0-8) to the starting ID
                 property int wsId: root.startingId + index
                 
                 property var wsData: {
@@ -33,28 +31,59 @@ Item {
                     return activeWorkspaces.find(ws => ws.id === wsId);
                 }
                 
+                property var workspaceClients: {
+                    let allWindows = Array.from(Hyprland.toplevels.values);
+                    return allWindows.filter(client => client.workspace && client.workspace.id === wsId);
+                }
+                
                 property bool isActive: wsData ? wsData.active : false
-                property bool isOccupied: !!wsData
+                property bool isOccupied: !!wsData || workspaceClients.length > 0
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 
                 color: colors.background
-                
                 border.width: isActive ? 2 : 0
                 border.color: colors.color5 
-                
-                // radius: 6 
+                clip: true 
+                radius: 6 
 
+                // Background ID text
                 Text {
                     anchors.centerIn: parent
                     text: wsId
-                    
-                    color: isOccupied ? colors.foreground : colors.color8 
-                    
-                    font.pixelSize: 20
+                    color: colors.foreground
+                    opacity: 0.05
+                    font.pixelSize: 60
                     font.bold: true
                 }
+
+                // Grid of live window previews
+                GridLayout {
+                    anchors.fill: parent
+                    anchors.margins: 12
+                    
+                    // Auto-adjust layout so 1 window takes the whole box, 
+                    // 2 windows split it, 3+ form a grid.
+                    columns: workspaceClients.length > 2 ? 2 : 1
+                    rowSpacing: 8
+                    columnSpacing: 8
+                    
+                    Repeater {
+                        model: workspaceClients
+                        
+                        ScreencopyView {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            
+                            // Extract the Wayland Toplevel handle from the wrapper
+                            captureSource: modelData.wayland
+                            
+                            live: true 
+                        }
+                    }
+                }
+                
             }
         }
     }
