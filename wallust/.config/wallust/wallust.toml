@@ -108,3 +108,7 @@ hyprquickpaper.target = '~/.config/quickshell/hyprquickpaper/colors.json'
 
 cavabg.template = "colors-cavabg.toml"
 cavabg.target = "~/.config/cava-bg/config.toml"
+
+
+quickView.template = 'colors-sidebar.json'
+quickView.target = '~/.config/quickshell/quickView/colors.json'
