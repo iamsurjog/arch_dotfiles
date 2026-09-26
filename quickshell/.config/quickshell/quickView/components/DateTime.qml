@@ -4,7 +4,7 @@ import Quickshell.Services.UPower
 
 Rectangle {
     id: root
-    color: typeof colors !== "undefined" ? colors.background : "#1e1e2e"
+    color: "transparent"
     radius: 8
 
     // Force the Rectangle to size itself to the internal layout + margins

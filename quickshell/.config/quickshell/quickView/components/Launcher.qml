@@ -1,6 +1,8 @@
 import QtQuick
 import Quickshell
 
+import "menus"
+
 Rectangle {
     id: launcher
 
@@ -19,7 +21,10 @@ Rectangle {
 
     width: 200
     height: main.trayHeight
-    color: typeof colors !== "undefined" ? colors.color9 : "#313244"
+    color: typeof colors !== "undefined" ? colors.background : "#313244"
+    border.width: 2
+    border.color: colors.color5
+
     radius: 6
 
     TextInput {
