@@ -8,6 +8,15 @@ Rectangle {
     property bool wallpaperMode: inputField.text.trim().toLowerCase().startsWith("/wall")
     property string searchQuery: inputField.text
 
+    function activate() {
+        inputField.clear()
+        inputField.forceActiveFocus()
+    }
+
+    function resetInput() {
+        inputField.clear()
+    }
+
     width: 200
     height: main.trayHeight
     color: typeof colors !== "undefined" ? colors.color9 : "#313244"
@@ -25,9 +34,6 @@ Rectangle {
 
         cursorVisible: false
         cursorDelegate: Item {}
-
-        focus: true
-        Component.onCompleted: forceActiveFocus()
 
         MouseArea {
             anchors.fill: parent
@@ -50,7 +56,7 @@ Rectangle {
             else if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                 appMenu.launchSelected()
                 event.accepted = true
-                Qt.quit()
+                main.isOpen = false
             }
         }
     }

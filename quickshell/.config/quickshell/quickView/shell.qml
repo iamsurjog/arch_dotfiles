@@ -13,8 +13,9 @@ PanelWindow {
     property int paddingHeight: 100
     property int paddingWidth: 100
     property int trayHeight: 50
+    property bool isOpen: false
 
-    visible: true
+    visible: isOpen
 
     id: main
     color: "transparent"
@@ -24,7 +25,39 @@ PanelWindow {
 
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
-    KeyBinds {}
+    onIsOpenChanged: {
+        if (isOpen) {
+            Qt.callLater(() => {
+                if (main.isOpen)
+                    launcher.activate()
+            })
+        } else {
+            launcher.resetInput()
+        }
+    }
+
+    KeyBinds {
+        panelRoot: main
+    }
+
+    IpcHandler {
+        target: "quickView"
+
+        function show(): void {
+            if (main.isOpen)
+                launcher.activate()
+            else
+                main.isOpen = true
+        }
+
+        function hide(): void {
+            main.isOpen = false
+        }
+
+        function toggle(): void {
+            main.isOpen = !main.isOpen
+        }
+    }
 
     // Top Bar
     RowLayout {

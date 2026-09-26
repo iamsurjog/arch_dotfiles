@@ -2,10 +2,12 @@
 import QtQuick
 
 Item {
+    id: root
+    property var panelRoot
+
     Shortcut {
         sequence: "Escape"
-        
-        // Kills the Quickshell process entirely
-        onActivated: Qt.quit() 
+
+        onActivated: root.panelRoot.isOpen = false
     }
 }

@@ -62,46 +62,61 @@ Rectangle {
             hoverEnabled: true
 
             onHoveredChanged: {
-                if (hovered) {
-                    appList.currentIndex = index
-                }
+                if (hovered)
+                appList.currentIndex = index
             }
 
             highlighted: ListView.isCurrentItem
 
             contentItem: RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 12
+                anchors.rightMargin: 12
                 spacing: 12
 
                 IconImage {
-                    source: modelData.icon || ""
+                    source: modelData.icon
+                    ? Quickshell.iconPath(modelData.icon)
+                    : ""
+
                     Layout.preferredWidth: 32
                     Layout.preferredHeight: 32
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 }
 
                 ColumnLayout {
                     spacing: 2
                     Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     Text {
                         text: modelData.name || "Unknown"
-                        color: typeof colors !== "undefined" ? colors.color15 : "#cdd6f4"
+                        color: typeof colors !== "undefined"
+                        ? colors.color15
+                        : "#cdd6f4"
                         font.pixelSize: 15
+                        Layout.fillWidth: true
+                        elide: Text.ElideRight
                     }
 
                     Text {
                         text: modelData.genericName || modelData.comment || ""
-                        color: typeof colors !== "undefined" ? colors.color14 : "#a6adc8"
+                        color: typeof colors !== "undefined"
+                        ? colors.color14
+                        : "#a6adc8"
                         font.pixelSize: 11
                         visible: text !== ""
+                        Layout.fillWidth: true
                         elide: Text.ElideRight
-                        Layout.maximumWidth: parent.width
                     }
                 }
             }
 
             background: Rectangle {
                 color: delegate.highlighted
-                ? (typeof colors !== "undefined" ? colors.color2 : "#45475a")
+                ? (typeof colors !== "undefined"
+                    ? colors.color2
+                    : "#45475a")
                 : "transparent"
                 radius: 4
             }
@@ -111,6 +126,7 @@ Rectangle {
                 appDrawer.launchSelected()
             }
         }
+
     }
 
     function launchSelected() {

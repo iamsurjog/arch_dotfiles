@@ -56,7 +56,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("~/.config/rofi/scripts/folder_opener.sh"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("pkill rofi || " .. menu), { release = true })
+hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.exec_cmd("pkill rofi || " .. menu), {  })
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("/home/randomguy/.scripts/wayclick/wayclick.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/rofi/scripts/theme_selector.sh"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/random_wallpaper.sh"))
@@ -189,7 +189,8 @@ hl.bind(mainMod .. " + SHIFT + V",
     hl.dsp.exec_cmd("cliphist list | rofi -dmenu -no-show-icons false | cliphist decode | wl-copy"))
 hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("rofimoji -a copy"))
 hl.bind(mainMod .. " + CTRL + SHIFT + C", hl.dsp.exec_cmd("hyprpicker | wl-copy"))
-hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.exec_cmd("qs ipc -c quickshell-overview call overview toggle"))
+hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("qs ipc -c quickView call quickView toggle"))
+-- hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.exec_cmd("qs ipc -c quickshell-overview call overview toggle"))
 
 -- TODO: thgese binds
 -- bind = $mainMod, s, exec, ~/.config/rofi/scripts/sess.sh

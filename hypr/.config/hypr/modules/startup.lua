@@ -41,6 +41,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("qs -c quickshell-overview")
     hl.exec_cmd("qs -c hyprtodo")
     hl.exec_cmd("qs -c popout")
+    hl.exec_cmd("qs -c quickView -n")
 
     hl.exec_cmd("cava-bg")
     hl.exec_cmd("tery")
@@ -80,4 +81,3 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env("QT_STYLE_OVERRIDE", "kvantum")
 hl.env("AQ_DRM_DEVICES", "/dev/dri/card1:/dev/dri/card2")
 hl.env("QS_NO_RELOAD_POPUP", "1")
-
