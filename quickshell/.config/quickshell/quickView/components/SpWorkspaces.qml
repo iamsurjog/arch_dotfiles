@@ -80,18 +80,6 @@ Item {
                 }
 
                 // Small indicator overlaid at the bottom right (hidden if empty)
-                Text {
-                    anchors {
-                        bottom: parent.bottom
-                        right: parent.right
-                        margins: 6
-                    }
-                    text: wsName
-                    color: typeof colors !== "undefined" ? colors.foreground : "#cdd6f4"
-                    font.pixelSize: 14
-                    font.bold: true
-                    visible: isOccupied
-                }
             }
         }
     }

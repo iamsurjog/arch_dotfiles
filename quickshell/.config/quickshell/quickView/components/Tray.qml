@@ -30,8 +30,8 @@ RowLayout {
                     // Use the hard reference instead of the dynamic attached property
                     window: root.panelRoot
                     
-                    rect.x: trayItemRec.mapToItem(root.panelRoot, 0, 0).x
-                    rect.y: trayItemRec.mapToItem(root.panelRoot, 0, 0).y
+                    // rect.x: trayItemRec.mapToItem(root.panelRoot, 0, 0).x
+                    // rect.y: trayItemRec.mapToItem(root.panelRoot, 0, 0).y
                     rect.width: trayItemRec.width
                     rect.height: trayItemRec.height
                     

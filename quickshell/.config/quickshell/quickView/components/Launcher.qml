@@ -10,6 +10,19 @@ Rectangle {
     property bool wallpaperMode: inputField.text.trim().toLowerCase().startsWith("/wall")
     property string searchQuery: inputField.text
 
+    function focusInput() {
+        if (main.isOpen)
+        inputField.forceActiveFocus()
+    }
+
+    // Showing the dropdown PopupWindow can move keyboard focus away from the input
+    // field (the popup is a separate window). Re-assert focus whenever the popup is
+    // created or destroyed so typing never dies mid-word.
+    onTypingChanged: {
+        if (typing)
+        Qt.callLater(() => launcher.focusInput())
+    }
+
     function activate() {
         inputField.clear()
         inputField.forceActiveFocus()
@@ -40,6 +53,12 @@ Rectangle {
         cursorVisible: false
         cursorDelegate: Item {}
 
+        onActiveFocusChanged: {
+            if (!activeFocus && main.isOpen) {
+                Qt.callLater(() => launcher.focusInput())
+            }
+        }
+
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.BlankCursor
@@ -67,15 +86,19 @@ Rectangle {
     }
 
     // Creates a native Wayland surface that drops down seamlessly
+    // 1. Replace PopupWindow with PanelWindow
     PopupWindow {
         id: launcherPopup
         visible: launcher.typing
+        
+        // This is the Quickshell-specific property to prevent focus stealing on launch
+        grabFocus: false
+        
         implicitWidth: menuContent.width
         implicitHeight: menuContent.height
 
         anchor {
             window: main
-            // Map the coordinates so it drops exactly below the text input
             rect.x: launcher.mapToItem(main.contentItem, 0, 0).x
             rect.y: launcher.mapToItem(main.contentItem, 0, 0).y
             rect.width: Screen.width / 2 + launcher.width * 2 + 50
@@ -83,7 +106,6 @@ Rectangle {
             edges: Edges.Bottom
         }
 
-        // Popup background must be transparent so only the custom menus show
         color: "transparent"
 
         Item {
@@ -103,7 +125,6 @@ Rectangle {
                 width: parent.width
                 visible: launcher.typing && launcher.wallpaperMode
             }
-
         }
     }
 }
