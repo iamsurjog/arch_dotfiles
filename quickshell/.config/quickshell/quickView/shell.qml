@@ -1,9 +1,11 @@
+//@ pragma UseQApplication
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
 
+import "modules/menus"
 import "modules"
 import "components"
 
@@ -11,6 +13,8 @@ PanelWindow {
     property int paddingHeight: 100
     property int paddingWidth: 100
     property int trayHeight: 50
+
+    visible: true
 
     id: main
     color: "transparent"
@@ -23,18 +27,45 @@ PanelWindow {
     KeyBinds {}
 
     // Top Bar
-    Rectangle {
+    RowLayout {
         id: topBar
-        width: parent.width - 20
-        height: main.trayHeight
-        color: colors.color5
         anchors {
             top: parent.top
-            horizontalCenter: parent.horizontalCenter
+            left: parent.left
+            right: parent.right
         }
-        DateTime{}
-        Launcher{}
-        Tray{}
+
+        Tray {
+            panelRoot: main
+
+            anchors {
+                left: parent.left
+                top: parent.top
+                bottom: parent.bottom
+            }
+        }
+        // 1. Your left-side items go here (e.g., a clock, a logo, or window title)
+        Launcher {
+            id: launcher
+
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+                top: parent.top
+                bottom: parent.bottom
+            }
+        }
+
+        // 2. The magical expanding spacer. This eats all available empty space
+        // in the middle of the screen, forcing everything after it to the right.
+        DateTime {
+            anchors {
+                right: parent.right
+                top: parent.top
+                bottom: parent.bottom
+            }
+        }
+
+        // 3. Your Tray, perfectly pushed to the right side
     }
 
     // Main
@@ -44,6 +75,7 @@ PanelWindow {
         rows: 2
         columnSpacing: 12
         rowSpacing: 12
+        visible: launcher.typing
 
         anchors {
             top: topBar.bottom
@@ -60,6 +92,14 @@ PanelWindow {
         Notifications  { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
         SpWorkspaces   { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
         Calculator     { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
+    }
+
+    Apps{
+        visible: !launcher.typing && launcher.apps
+    }
+
+    Wallpaper{
+        visible: !launcher.typing && !launcher.apps
     }
 
     FileView {
