@@ -75,7 +75,7 @@ PanelWindow {
         rows: 2
         columnSpacing: 12
         rowSpacing: 12
-        visible: launcher.typing
+        visible: !launcher.typing
 
         anchors {
             top: topBar.bottom
@@ -92,14 +92,6 @@ PanelWindow {
         Notifications  { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
         SpWorkspaces   { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
         Calculator     { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
-    }
-
-    Apps{
-        visible: !launcher.typing && launcher.apps
-    }
-
-    Wallpaper{
-        visible: !launcher.typing && !launcher.apps
     }
 
     FileView {
