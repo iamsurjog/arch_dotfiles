@@ -9,6 +9,10 @@ Rectangle {
     property bool typing: inputField.text.trim().length > 0
     property bool wallpaperMode: inputField.text.trim().toLowerCase().startsWith("/wall")
     property string searchQuery: inputField.text
+    
+    onSearchQueryChanged: {
+        appMenu.searchQuery = searchQuery
+    }
 
     function activate() {
         inputField.clear()
@@ -76,9 +80,6 @@ Rectangle {
         anchor {
             window: main
             // Map the coordinates so it drops exactly below the text input
-            rect.x: launcher.mapToItem(main.contentItem, 0, 0).x
-            rect.y: launcher.mapToItem(main.contentItem, 0, 0).y
-            rect.width: Screen.width / 2 + launcher.width * 2 + 50
             rect.height: launcher.height
             edges: Edges.Bottom
         }

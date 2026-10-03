@@ -4,14 +4,16 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
 
+//BUG: Hovering apps removes focus from typing
+
 Rectangle {
     id: appDrawer
     width: 400
     height: 500
-    color: typeof colors !== "undefined" ? colors.color0 : "#1e1e2e"
+    color: 'transparent'
     radius: 8
-    border.color: typeof colors !== "undefined" ? colors.color1 : "#313244"
-    border.width: 1
+    // border.color: typeof colors !== "undefined" ? colors.color5 : "#313244"
+    // border.width: 1
 
     property string searchQuery: ""
 
@@ -43,6 +45,7 @@ Rectangle {
 
     onSearchQueryChanged: {
         appList.currentIndex = filteredApps.length > 0 ? 0 : -1
+
     }
 
     ListView {
@@ -136,6 +139,7 @@ Rectangle {
             if (target && typeof target.execute === "function") {
                 target.execute()
                 appDrawer.searchQuery = ""
+                inputField.text = ""
             }
         }
     }
