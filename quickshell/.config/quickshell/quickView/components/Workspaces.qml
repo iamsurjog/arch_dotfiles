@@ -3,8 +3,24 @@ import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Wayland // Required for ScreencopyView
 
-Item {
+Rectangle {
     id: root
+
+    radius: 16
+    clip: true
+    color: "transparent"
+    gradient: Gradient {
+        GradientStop {
+            position: 0.0
+            color: theme.card
+        }
+        GradientStop {
+            position: 1.0
+            color: theme.cardDeep
+        }
+    }
+    border.width: 1
+    border.color: theme.line
 
     property int currentActiveId: {
         let activeWorkspaces = Array.from(Hyprland.workspaces.values);
@@ -16,6 +32,7 @@ Item {
 
     GridLayout {
         anchors.fill: parent
+        anchors.margins: 12
         columns: 3
         columnSpacing: 10
         rowSpacing: 10
@@ -42,26 +59,41 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 
-                color: colors.background
-                border.width: isActive ? 2 : 0
-                border.color: colors.color5 
+                // Empty slots read as faint wells, occupied ones get a lift,
+                // the focused one wears the accent
+                color: isActive ? theme.fade(colors.color10, 0.26)
+                     : isOccupied ? theme.fade(colors.foreground, 0.07)
+                     : theme.fade(colors.foreground, 0.035)
+                border.width: isActive ? 2 : 1
+                border.color: isActive ? theme.ring : theme.lineSoft
                 clip: true 
-                radius: 6 
+                radius: 12
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 160
+                    }
+                }
+                Behavior on border.color {
+                    ColorAnimation {
+                        duration: 160
+                    }
+                }
 
                 // Background ID text
                 Text {
                     anchors.centerIn: parent
                     text: wsId
-                    color: colors.foreground
-                    opacity: 0.05
-                    font.pixelSize: 60
+                    color: theme.text
+                    opacity: 0.06
+                    font.pixelSize: 56
                     font.bold: true
                 }
 
                 // Grid of live window previews
                 GridLayout {
                     anchors.fill: parent
-                    anchors.margins: 12
+                    anchors.margins: 10
                     
                     // Auto-adjust layout so 1 window takes the whole box, 
                     // 2 windows split it, 3+ form a grid.

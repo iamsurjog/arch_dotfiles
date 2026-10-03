@@ -23,21 +23,34 @@ Rectangle {
         inputField.clear()
     }
 
-    width: 200
+    width: 280
     height: main.trayHeight
-    color: typeof colors !== "undefined" ? colors.background : "#313244"
-    border.width: 2
-    border.color: colors.color5
+    radius: 14
+    clip: true
 
-    radius: 6
+    // Reads as an inset well until it is focused, then the accent ring shows up
+    color: inputField.activeFocus ? theme.field : theme.fade(colors.background, 0.55)
+    border.width: 1
+    border.color: inputField.activeFocus ? theme.ring : theme.line
+
+    Behavior on color {
+        ColorAnimation {
+            duration: 160
+        }
+    }
+    Behavior on border.color {
+        ColorAnimation {
+            duration: 160
+        }
+    }
 
     TextInput {
         id: inputField
         anchors.fill: parent
-        anchors.leftMargin: 12
-        anchors.rightMargin: 12
+        anchors.leftMargin: 14
+        anchors.rightMargin: 14
         verticalAlignment: TextInput.AlignVCenter
-        color: typeof colors !== "undefined" ? colors.foreground : "#cdd6f4"
+        color: theme.text
         font.pixelSize: 16
         clip: true
 
@@ -70,6 +83,19 @@ Rectangle {
         }
     }
 
+    // Hint shown while the field is empty (sits above the input but lets
+    // clicks fall through to it)
+    Text {
+        anchors.fill: parent
+        anchors.leftMargin: 14
+        anchors.rightMargin: 14
+        verticalAlignment: Text.AlignVCenter
+        text: "Search apps…"
+        color: theme.textMute
+        font.pixelSize: 16
+        visible: inputField.text.length === 0
+    }
+
     // Creates a native Wayland surface that drops down seamlessly
     PopupWindow {
         id: launcherPopup
@@ -79,8 +105,10 @@ Rectangle {
 
         anchor {
             window: main
+            // Centre the drop down on the search field instead of the window edge
+            rect.x: topBar.x + launcher.x + (launcher.width - menuContent.width) / 2
             // Map the coordinates so it drops exactly below the text input
-            rect.height: launcher.height
+            rect.height: topBar.height + topBar.x
             edges: Edges.Bottom
         }
 

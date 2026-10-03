@@ -9,11 +9,13 @@ import Quickshell.Widgets
 Rectangle {
     id: appDrawer
     width: 400
-    height: 500
-    color: 'transparent'
-    radius: 8
-    // border.color: typeof colors !== "undefined" ? colors.color5 : "#313244"
-    // border.width: 1
+    // Hug the result list rather than always reserving a fixed slab of space
+    height: Math.max(Math.min(appList.contentHeight + 20, 480), 64)
+    radius: 16
+    clip: true
+    color: theme.fade(colors.background, 0.94)
+    border.width: 1
+    border.color: theme.line
 
     property string searchQuery: ""
 
@@ -51,7 +53,7 @@ Rectangle {
     ListView {
         id: appList
         anchors.fill: parent
-        anchors.margins: 12
+        anchors.margins: 10
         clip: true
         spacing: 4
         highlightMoveDuration: 100
@@ -82,8 +84,8 @@ Rectangle {
                     ? Quickshell.iconPath(modelData.icon)
                     : ""
 
-                    Layout.preferredWidth: 32
-                    Layout.preferredHeight: 32
+                    Layout.preferredWidth: 30
+                    Layout.preferredHeight: 30
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 }
 
@@ -94,9 +96,7 @@ Rectangle {
 
                     Text {
                         text: modelData.name || "Unknown"
-                        color: typeof colors !== "undefined"
-                        ? colors.color15
-                        : "#cdd6f4"
+                        color: theme.text
                         font.pixelSize: 15
                         Layout.fillWidth: true
                         elide: Text.ElideRight
@@ -104,9 +104,7 @@ Rectangle {
 
                     Text {
                         text: modelData.genericName || modelData.comment || ""
-                        color: typeof colors !== "undefined"
-                        ? colors.color14
-                        : "#a6adc8"
+                        color: theme.textDim
                         font.pixelSize: 11
                         visible: text !== ""
                         Layout.fillWidth: true
@@ -116,12 +114,21 @@ Rectangle {
             }
 
             background: Rectangle {
-                color: delegate.highlighted
-                ? (typeof colors !== "undefined"
-                    ? colors.color2
-                    : "#45475a")
-                : "transparent"
-                radius: 4
+                radius: 10
+                color: delegate.highlighted ? theme.fade(colors.color10, 0.32) : "transparent"
+                border.width: 1
+                border.color: delegate.highlighted ? theme.fade(colors.cursor, 0.45) : "transparent"
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 120
+                    }
+                }
+                Behavior on border.color {
+                    ColorAnimation {
+                        duration: 120
+                    }
+                }
             }
 
             onClicked: {
@@ -130,6 +137,15 @@ Rectangle {
             }
         }
 
+    }
+
+    // Shown when nothing matches the query
+    Text {
+        anchors.centerIn: parent
+        text: "No matches"
+        color: theme.textMute
+        font.pixelSize: 15
+        visible: appDrawer.filteredApps.length === 0
     }
 
     function launchSelected() {

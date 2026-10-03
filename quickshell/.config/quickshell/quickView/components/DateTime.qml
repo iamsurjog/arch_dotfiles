@@ -4,11 +4,13 @@ import Quickshell.Services.UPower
 
 Rectangle {
     id: root
-    color: "transparent"
-    radius: 8
+    radius: 14
+    color: theme.raised
+    border.width: 1
+    border.color: theme.lineSoft
 
     // Force the Rectangle to size itself to the internal layout + margins
-    implicitWidth: layout.implicitWidth + 24
+    implicitWidth: layout.implicitWidth + 30
     implicitHeight: layout.implicitHeight + 16
 
     property string timeString: ""
@@ -37,7 +39,7 @@ Rectangle {
     RowLayout {
         id: layout
         anchors.centerIn: parent
-        spacing: 16
+        spacing: 14
 
 
         // Clock Block
@@ -46,40 +48,40 @@ Rectangle {
             
             Text {
                 text: root.timeString
-                color: typeof colors !== "undefined" ? colors.foreground : "#cdd6f4"
+                color: theme.text
                 font.pixelSize: 18
                 font.bold: true
             }
             Text {
                 text: root.dateString
-                color: typeof colors !== "undefined" ? colors.color8 : "#a6adc8"
+                color: theme.textDim
                 font.pixelSize: 12
             }
         }
 
         // Divider
         Rectangle {
-            Layout.preferredWidth: 2
-            Layout.fillHeight: true
-            color: typeof colors !== "undefined" ? colors.color0 : "#313244"
+            Layout.preferredWidth: 1
+            Layout.preferredHeight: 30
+            radius: 0.5
+            color: theme.fade(colors.foreground, 0.16)
             visible: battery !== null && battery.isPresent
         }
 
         // Battery Block
         RowLayout {
-            spacing: 6
+            spacing: 7
             visible: battery !== null && battery.isPresent
             
             Text {
                 text: root.isCharging ? "⚡" : (root.batPercent > 20 ? "🔋" : "🪫")
-                color: root.isCharging ? (typeof colors !== "undefined" ? colors.color2 : "#a6e3a1") 
-                                       : (typeof colors !== "undefined" ? colors.foreground : "#cdd6f4")
+                color: root.isCharging ? theme.accent : theme.text
                 font.pixelSize: 16
             }
             
             Text {
                 text: Math.round(root.batPercent) + "%"
-                color: typeof colors !== "undefined" ? colors.foreground : "#cdd6f4"
+                color: theme.text
                 font.pixelSize: 16
                 font.bold: true
             }

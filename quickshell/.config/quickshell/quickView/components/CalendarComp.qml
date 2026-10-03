@@ -4,8 +4,21 @@ import QtQuick.Controls
 
 Rectangle {
     id: root
-    color: typeof colors !== "undefined" ? colors.background : "#1e1e2e"
-    radius: 8
+    radius: 16
+    clip: true
+    color: "transparent"
+    gradient: Gradient {
+        GradientStop {
+            position: 0.0
+            color: theme.card
+        }
+        GradientStop {
+            position: 1.0
+            color: theme.cardDeep
+        }
+    }
+    border.width: 1
+    border.color: theme.line
 
     // Track the current real-world date
     property date today: new Date()
@@ -24,15 +37,33 @@ Rectangle {
             Layout.fillWidth: true
 
             // Previous Month Button
-            Text {
-                text: "<"
-                color: typeof colors !== "undefined" ? colors.color5 : "#89b4fa"
-                font.pixelSize: 20
-                font.bold: true
-                
+            Rectangle {
+                Layout.preferredWidth: 32
+                Layout.preferredHeight: 32
+                radius: 10
+                color: navPrev.containsMouse ? theme.fade(colors.foreground, 0.10) : "transparent"
+                border.width: 1
+                border.color: theme.lineSoft
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 120
+                    }
+                }
+
+                Text {
+                    anchors.centerIn: parent
+                    text: "‹"
+                    color: theme.fade(colors.cursor, 0.95)
+                    font.pixelSize: 22
+                    font.bold: true
+                }
+
                 MouseArea {
+                    id: navPrev
                     anchors.fill: parent
-                    anchors.margins: -10 // Increase hit area for easier clicking
+                    anchors.margins: -6 // Increase hit area for easier clicking
+                    hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         if (root.viewMonth === 0) {
@@ -50,23 +81,42 @@ Rectangle {
             // Month and Year Text
             Text {
                 text: Qt.formatDate(new Date(root.viewYear, root.viewMonth, 1), "MMMM yyyy")
-                color: typeof colors !== "undefined" ? colors.foreground : "#cdd6f4"
-                font.pixelSize: 16
+                color: theme.text
+                font.pixelSize: 17
                 font.bold: true
+                font.letterSpacing: 0.5
             }
 
             Item { Layout.fillWidth: true } // Spacer
 
             // Next Month Button
-            Text {
-                text: ">"
-                color: typeof colors !== "undefined" ? colors.color5 : "#89b4fa"
-                font.pixelSize: 20
-                font.bold: true
-                
+            Rectangle {
+                Layout.preferredWidth: 32
+                Layout.preferredHeight: 32
+                radius: 10
+                color: navNext.containsMouse ? theme.fade(colors.foreground, 0.10) : "transparent"
+                border.width: 1
+                border.color: theme.lineSoft
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 120
+                    }
+                }
+
+                Text {
+                    anchors.centerIn: parent
+                    text: "›"
+                    color: theme.fade(colors.cursor, 0.95)
+                    font.pixelSize: 22
+                    font.bold: true
+                }
+
                 MouseArea {
+                    id: navNext
                     anchors.fill: parent
-                    anchors.margins: -10
+                    anchors.margins: -6
+                    hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         if (root.viewMonth === 11) {
@@ -87,9 +137,10 @@ Rectangle {
             
             delegate: Text {
                 text: model.shortName
-                color: typeof colors !== "undefined" ? colors.color8 : "#7f849c"
-                font.pixelSize: 12
+                color: theme.textMute
+                font.pixelSize: 11
                 font.bold: true
+                font.letterSpacing: 1
                 horizontalAlignment: Text.AlignHCenter
             }
         }
@@ -104,27 +155,32 @@ Rectangle {
             locale: Qt.locale()
 
             delegate: Rectangle {
-                color: "transparent"
+                color: isToday ? theme.fade(colors.color10, 0.30) : "transparent"
 
                 // Check if this specific grid cell represents today's real date
                 property bool isToday: model.date.getDate() === root.today.getDate() &&
                                        model.date.getMonth() === root.today.getMonth() &&
                                        model.date.getFullYear() === root.today.getFullYear()
 
-                // Highlight today with a border
-                border.width: isToday ? 2 : 0
-                border.color: typeof colors !== "undefined" ? colors.color5 : "#89b4fa"
-                radius: 4
+                // A soft accent tile keeps today findable without shouting
+                border.width: 1
+                border.color: isToday ? theme.ring : "transparent"
+                radius: 9
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 160
+                    }
+                }
 
                 Text {
                     anchors.centerIn: parent
                     text: model.day
                     font.pixelSize: 14
+                    font.bold: isToday
                     
                     // Dim the text if the day belongs to the previous or next month
-                    color: model.month === grid.month 
-                           ? (typeof colors !== "undefined" ? colors.foreground : "#cdd6f4") 
-                           : (typeof colors !== "undefined" ? colors.color8 : "#585b70")
+                    color: model.month === grid.month ? theme.text : theme.textMute
                 }
             }
         }

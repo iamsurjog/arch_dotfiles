@@ -16,11 +16,21 @@ RowLayout {
 
         delegate: Rectangle {
             id: trayItemRec
-            Layout.preferredWidth: 35
-            Layout.preferredHeight: 35
-            
-            color: mouseArea.containsMouse ? (typeof colors !== "undefined" ? colors.color0 : "#313244") : "transparent"
-            radius: 6
+            Layout.preferredWidth: 36
+            Layout.preferredHeight: 36
+
+            radius: 10
+            color: mouseArea.pressed ? theme.fade(colors.foreground, 0.18)
+                 : mouseArea.containsMouse ? theme.fade(colors.foreground, 0.10)
+                 : "transparent"
+            border.width: 1
+            border.color: mouseArea.containsMouse ? theme.line : "transparent"
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: 120
+                }
+            }
 
             QsMenuAnchor {
                 id: menuAnchor
@@ -41,9 +51,16 @@ RowLayout {
 
             IconImage {
                 anchors.centerIn: parent
-                width: 23
-                height: 23
+                width: 22
+                height: 22
                 source: modelData.icon
+                opacity: mouseArea.containsMouse ? 1.0 : 0.85
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 120
+                    }
+                }
             }
 
             MouseArea {

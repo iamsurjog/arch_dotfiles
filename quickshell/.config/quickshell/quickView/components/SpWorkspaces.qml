@@ -3,8 +3,24 @@ import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Wayland
 
-Item {
+Rectangle {
     id: root
+
+    radius: 16
+    clip: true
+    color: "transparent"
+    gradient: Gradient {
+        GradientStop {
+            position: 0.0
+            color: theme.card
+        }
+        GradientStop {
+            position: 1.0
+            color: theme.cardDeep
+        }
+    }
+    border.width: 1
+    border.color: theme.line
 
     property var specialWorkspaces: {
         return Array.from(Hyprland.workspaces.values)
@@ -14,6 +30,7 @@ Item {
 
     GridLayout {
         anchors.fill: parent
+        anchors.margins: 12
         columns: 2
         rows: 2
         columnSpacing: 10
@@ -39,20 +56,33 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                color: typeof colors !== "undefined" ? colors.background : "#1e1e2e"
-                
-                border.width: (isOccupied && wsData.active) ? 2 : 0
-                border.color: typeof colors !== "undefined" ? colors.color5 : "#89b4fa"
+                color: (isOccupied && wsData.active) ? theme.fade(colors.color10, 0.26)
+                     : isOccupied ? theme.fade(colors.foreground, 0.07)
+                     : theme.fade(colors.foreground, 0.035)
+
+                border.width: (isOccupied && wsData.active) ? 2 : 1
+                border.color: (isOccupied && wsData.active) ? theme.ring : theme.lineSoft
                 clip: true
-                radius: 6
+                radius: 12
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 160
+                    }
+                }
+                Behavior on border.color {
+                    ColorAnimation {
+                        duration: 160
+                    }
+                }
 
                 // Background text (hidden if empty)
                 Text {
                     anchors.centerIn: parent
                     text: wsName
-                    color: typeof colors !== "undefined" ? colors.foreground : "#cdd6f4"
-                    opacity: 0.05
-                    font.pixelSize: 40
+                    color: theme.text
+                    opacity: 0.06
+                    font.pixelSize: 36
                     font.bold: true
                     visible: isOccupied
                 }
@@ -60,7 +90,7 @@ Item {
                 // Grid of live window previews
                 GridLayout {
                     anchors.fill: parent
-                    anchors.margins: 12
+                    anchors.margins: 10
 
                     columns: workspaceClients.length > 2 ? 2 : 1
                     rowSpacing: 8
@@ -79,18 +109,31 @@ Item {
                     }
                 }
 
-                // Small indicator overlaid at the bottom right (hidden if empty)
-                Text {
+                // Small chip in the corner so the name stays readable
+                // over whatever the preview is showing
+                Rectangle {
+                    id: nameChip
                     anchors {
                         bottom: parent.bottom
                         right: parent.right
-                        margins: 6
+                        margins: 8
                     }
-                    text: wsName
-                    color: typeof colors !== "undefined" ? colors.foreground : "#cdd6f4"
-                    font.pixelSize: 14
-                    font.bold: true
-                    visible: isOccupied
+                    width: nameLabel.width + 16
+                    height: nameLabel.height + 8
+                    radius: 7
+                    color: theme.fade(colors.background, 0.80)
+                    border.width: 1
+                    border.color: theme.line
+                    visible: isOccupied && wsName !== ""
+
+                    Text {
+                        id: nameLabel
+                        anchors.centerIn: parent
+                        text: wsName
+                        color: theme.text
+                        font.pixelSize: 13
+                        font.bold: true
+                    }
                 }
             }
         }

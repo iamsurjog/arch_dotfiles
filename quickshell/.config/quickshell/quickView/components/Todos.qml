@@ -6,10 +6,21 @@ Rectangle {
     id: root
     width: 350
     height: 500
-    color: colors.background
-    radius: 12
-    border.color: colors.color8
-    border.width: 2
+    radius: 16
+    clip: true
+    color: "transparent"
+    gradient: Gradient {
+        GradientStop {
+            position: 0.0
+            color: theme.card
+        }
+        GradientStop {
+            position: 1.0
+            color: theme.cardDeep
+        }
+    }
+    border.width: 1
+    border.color: theme.line
 
     // --- TODOS ADAPTER ---
     FileView {
@@ -69,22 +80,36 @@ Rectangle {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 15
+        anchors.margins: 16
         spacing: 12
 
         // --- HEADER ---
-        Text {
-            text: "Upcoming Todos"
-            font.pixelSize: 22
-            font.bold: true
-            color: colors.color1
+        RowLayout {
             Layout.fillWidth: true
+            spacing: 10
+
+            // Accent tick
+            Rectangle {
+                Layout.preferredWidth: 4
+                Layout.preferredHeight: 20
+                radius: 2
+                color: theme.accent
+            }
+
+            Text {
+                text: "Upcoming Todos"
+                font.pixelSize: 20
+                font.bold: true
+                font.letterSpacing: 0.4
+                color: theme.text
+                Layout.fillWidth: true
+            }
         }
 
         Rectangle {
             Layout.fillWidth: true
             height: 1
-            color: colors.color8
+            color: theme.line
         }
 
         // --- EVENT LIST ---
@@ -100,19 +125,43 @@ Rectangle {
             delegate: Rectangle {
                 width: ListView.view.width
                 height: 65
-                color: colors.color0
-                radius: 8
+                radius: 12
+                clip: true
+                color: theme.raised
+                border.width: 1
+                border.color: theme.lineSoft
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 140
+                    }
+                }
+
+                // Accent bar marks the card down the left edge
+                Rectangle {
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        bottom: parent.bottom
+                    }
+                    width: 4
+                    color: theme.accent
+                    opacity: 0.9
+                }
 
                 ColumnLayout {
                     anchors.fill: parent
-                    anchors.margins: 10
+                    anchors.leftMargin: 18
+                    anchors.rightMargin: 12
+                    anchors.topMargin: 10
+                    anchors.bottomMargin: 10
                     spacing: 4
 
                     Text {
                         text: model.title
                         font.pixelSize: 16
                         font.bold: true
-                        color: colors.color4
+                        color: theme.text
                         Layout.fillWidth: true
                         elide: Text.ElideRight
                     }
@@ -120,11 +169,25 @@ Rectangle {
                     Text {
                         text: model.dateString
                         font.pixelSize: 13
-                        color: colors.color7
+                        color: theme.textDim
                         Layout.fillWidth: true
+                        elide: Text.ElideRight
                     }
                 }
             }
         }
+
+    }
+
+    // Shown while nothing is coming up
+    Text {
+        anchors.centerIn: parent
+        anchors.verticalCenterOffset: 30
+        horizontalAlignment: Text.AlignHCenter
+        text: "Nothing scheduled\nall clear for the next 3 days"
+        color: theme.textMute
+        font.pixelSize: 15
+        lineHeight: 1.4
+        visible: todosModel.count === 0
     }
 }

@@ -3,8 +3,21 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    color: typeof colors !== "undefined" ? colors.background : "#1e1e2e"
-    radius: 8
+    radius: 16
+    clip: true
+    color: "transparent"
+    gradient: Gradient {
+        GradientStop {
+            position: 0.0
+            color: theme.card
+        }
+        GradientStop {
+            position: 1.0
+            color: theme.cardDeep
+        }
+    }
+    border.width: 1
+    border.color: theme.line
 
     // Internal state for math evaluation
     property string expression: ""
@@ -62,18 +75,18 @@ Rectangle {
         // Top Display Screen
         Rectangle {
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            color: "transparent"
+            Layout.preferredHeight: 62
+            radius: 12
+            color: theme.fade(colors.foreground, 0.05)
             border.width: 1
-            border.color: typeof colors !== "undefined" ? colors.color8 : "#45475a"
-            radius: 6
+            border.color: theme.line
 
             Text {
                 anchors.fill: parent
-                anchors.margins: 12
+                anchors.margins: 14
                 text: root.display
-                color: typeof colors !== "undefined" ? colors.foreground : "#cdd6f4"
-                font.pixelSize: 24
+                color: theme.text
+                font.pixelSize: 26
                 font.bold: true
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
@@ -101,22 +114,40 @@ Rectangle {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    radius: 6
-                    
+                    radius: 12
+
                     // Categorize the buttons for styling
                     property bool isOp: ["÷", "×", "-", "+", "="].includes(modelData)
                     property bool isAction: ["C", "⌫", "(", ")"].includes(modelData)
-                    
+
                     // Button Background Color State
                     color: {
-                        if (mouseArea.pressed) return typeof colors !== "undefined" ? colors.color5 : "#89b4fa"
-                        if (isOp) return typeof colors !== "undefined" ? "#1Affffff" : "#1Affffff" // Slight white tint for operators
+                        if (mouseArea.pressed) return theme.accent
+                        if (mouseArea.containsMouse) return theme.fade(colors.foreground, 0.10)
+                        if (isOp) return theme.fade(colors.color10, 0.16)
+                        if (isAction) return theme.fade(colors.foreground, 0.045)
                         return "transparent"
                     }
-                    
+
                     // Border color matches the inactive background items
                     border.width: 1
-                    border.color: typeof colors !== "undefined" ? colors.color0 : "#313244"
+                    border.color: {
+                        if (mouseArea.pressed) return theme.fade(colors.color10, 0.9)
+                        if (isOp) return theme.fade(colors.color10, 0.35)
+                        if (mouseArea.containsMouse) return theme.line
+                        return theme.lineSoft
+                    }
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 110
+                        }
+                    }
+                    Behavior on border.color {
+                        ColorAnimation {
+                            duration: 110
+                        }
+                    }
 
                     Text {
                         anchors.centerIn: parent
@@ -124,9 +155,10 @@ Rectangle {
                         
                         // Font Color State
                         color: {
-                            if (mouseArea.pressed) return typeof colors !== "undefined" ? colors.background : "#1e1e2e" // Dark text on click
-                            if (isOp || isAction) return typeof colors !== "undefined" ? colors.color5 : "#89b4fa" // Highlight color for operators
-                            return typeof colors !== "undefined" ? colors.foreground : "#cdd6f4" // Standard text for numbers
+                            if (mouseArea.pressed) return colors.background // Dark text on click
+                            if (isOp) return theme.fade(colors.cursor, 1) // Warm accent for operators
+                            if (isAction) return theme.textDim
+                            return theme.text // Standard text for numbers
                         }
                         
                         font.pixelSize: 18
@@ -136,6 +168,7 @@ Rectangle {
                     MouseArea {
                         id: mouseArea
                         anchors.fill: parent
+                        hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
                         onClicked: handleInput(modelData)
                     }
