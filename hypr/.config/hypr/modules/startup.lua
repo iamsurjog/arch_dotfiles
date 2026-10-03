@@ -27,7 +27,7 @@ hl.on("hyprland.start", function ()
     -- necessary --
     hl.exec_cmd("/usr/lib/xdg-desktop-portal")
     hl.exec_cmd("systemctl --user start hyprland-session.target")
-    hl.exec_cmd("nm-applet & blueman-applet & swayosd-server & swaync & awww-daemon & ")
+    hl.exec_cmd("nm-applet & blueman-applet & swaync & awww-daemon & ")
     hl.exec_cmd("wl-paste --type text --watch cliphist store") -- Text --
     hl.exec_cmd("wl-paste --type image --watch cliphist store") -- Images --
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
