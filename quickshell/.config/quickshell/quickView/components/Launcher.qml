@@ -9,7 +9,7 @@ Rectangle {
     property bool typing: inputField.text.trim().length > 0
     property bool wallpaperMode: inputField.text.trim().toLowerCase().startsWith("/wall")
     property string searchQuery: inputField.text
-    
+
     onSearchQueryChanged: {
         appMenu.searchQuery = searchQuery
     }
@@ -74,6 +74,11 @@ Rectangle {
                 appMenu.previousItem()
                 event.accepted = true
             }
+            // Ctrl + W (Auto-fill wallpaper mode)
+            else if (event.modifiers & Qt.ControlModifier && event.key === Qt.Key_W) {
+                inputField.text = "/wall " 
+                event.accepted = true
+            }
             // Enter / Return
             else if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                 appMenu.launchSelected()
@@ -117,7 +122,7 @@ Rectangle {
 
         Item {
             id: menuContent
-            width: 400
+            width: launcher.wallpaperMode ? main.width : 400 
             height: launcher.wallpaperMode ? wallMenu.height : appMenu.height
 
             Apps {
