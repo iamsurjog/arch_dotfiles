@@ -50,6 +50,7 @@ hl.on("hyprland.start", function ()
     -- hl.exec_cmd("firefoxpwa site launch 01KVFRT68ZC54W4FFRAW6HH3Q8")
     -- hl.exec_cmd("/home/randomguy/.scripts/wayclick/wayclick.sh ")
     hl.exec_cmd("/home/randomguy/surjo/path/watcher -on-crash='/home/randomguy/surjo/apps/timeBox/notify-crash.sh' /home/randomguy/surjo/apps/timeBox/timeBox")
+    hl.exec_cmd("/home/randomguy/.local/bin/pleamar --scene /home/randomguy/.config/pleamar/example/bar.plm --no-hud")
 
     hl.exec_cmd("kitty")
 end)

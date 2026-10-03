@@ -112,3 +112,6 @@ cavabg.target = "~/.config/cava-bg/config.toml"
 
 quickView.template = 'colors-sidebar.json'
 quickView.target = '~/.config/quickshell/quickView/colors.json'
+
+plm.template = 'colors-plm.plm'
+plm.target = '~/.config/pleamar/example/colors.plm'
