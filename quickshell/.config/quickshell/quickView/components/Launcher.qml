@@ -113,7 +113,8 @@ Rectangle {
             // Centre the drop down on the search field instead of the window edge
             rect.x: topBar.x + launcher.x + (launcher.width - menuContent.width) / 2
             // Map the coordinates so it drops exactly below the text input
-            rect.height: topBar.height + topBar.x
+            rect.height: launcher.wallpaperMode ? topBar.height + topBar.x : 0
+            rect.y: topBar.y + topBar.height
             edges: Edges.Bottom
         }
 

@@ -5,7 +5,7 @@ import QtQuick.Layouts
 import Quickshell.Services.UPower
 
 Rectangle {
-    id: root
+    id: datetime
     radius: 14
     color: theme.raised
     border.width: 1
@@ -25,8 +25,8 @@ Rectangle {
         repeat: true
         onTriggered: {
             let now = new Date()
-            root.timeString = Qt.formatTime(now, "hh:mm AP")
-            root.dateString = Qt.formatDate(now, "ddd, MMM d")
+            datetime.timeString = Qt.formatTime(now, "hh:mm AP")
+            datetime.dateString = Qt.formatDate(now, "ddd, MMM d")
         }
         Component.onCompleted: triggered() // Run once immediately on load
     }
@@ -48,13 +48,13 @@ Rectangle {
             spacing: 2
 
             Text {
-                text: root.timeString
+                text: datetime.timeString
                 color: theme.text
                 font.pixelSize: 18
                 font.bold: true
             }
             Text {
-                text: root.dateString
+                text: datetime.dateString
                 color: theme.textDim
                 font.pixelSize: 12
             }
@@ -76,15 +76,15 @@ Rectangle {
             opacity: mouseArea.containsMouse ? 0.7 : 1.0
 
             Text {
-                text: root.isCharging ? "⚡" : (root.batPercent > 20 ? "🔋" : "🪫")
-                color: root.isCharging ? theme.accent : theme.text
+                text: datetime.isCharging ? "⚡" : (batPercent > 20 ? "🔋" : "🪫")
+                color: datetime.isCharging ? theme.accent : theme.text
                 font.pixelSize: 16
                 // Visual indicator: lower opacity when hovered
 
             }
 
             Text {
-                text: Math.round(root.batPercent) + "%"
+                text: Math.round(datetime.batPercent) + "%"
                 color: theme.text
                 font.pixelSize: 16
                 font.bold: true
@@ -98,6 +98,7 @@ Rectangle {
                 onClicked: {
                     // Fixed the missing comma syntax error here
                     Quickshell.execDetached(["wlogout", "-b", "4", "-T", "380", "-B", "380"])
+                    datetime.panelRoot.isOpen = false
                 }
             }
         }

@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 
 Rectangle {
-    id: root
+    id: cal
     radius: 16
     clip: true
     color: "transparent"
@@ -66,11 +66,11 @@ Rectangle {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        if (root.viewMonth === 0) {
-                            root.viewMonth = 11
-                            root.viewYear--
+                        if (cal.viewMonth === 0) {
+                            cal.viewMonth = 11
+                            cal.viewYear--
                         } else {
-                            root.viewMonth--
+                            cal.viewMonth--
                         }
                     }
                 }
@@ -80,7 +80,7 @@ Rectangle {
 
             // Month and Year Text
             Text {
-                text: Qt.formatDate(new Date(root.viewYear, root.viewMonth, 1), "MMMM yyyy")
+                text: Qt.formatDate(new Date(cal.viewYear, cal.viewMonth, 1), "MMMM yyyy")
                 color: theme.text
                 font.pixelSize: 17
                 font.bold: true
@@ -119,11 +119,11 @@ Rectangle {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        if (root.viewMonth === 11) {
-                            root.viewMonth = 0
-                            root.viewYear++
+                        if (cal.viewMonth === 11) {
+                            cal.viewMonth = 0
+                            cal.viewYear++
                         } else {
-                            root.viewMonth++
+                            cal.viewMonth++
                         }
                     }
                 }
@@ -150,17 +150,17 @@ Rectangle {
             id: grid
             Layout.fillWidth: true
             Layout.fillHeight: true
-            month: root.viewMonth
-            year: root.viewYear
+            month: cal.viewMonth
+            year: cal.viewYear
             locale: Qt.locale()
 
             delegate: Rectangle {
                 color: isToday ? theme.fade(colors.color10, 0.30) : "transparent"
 
                 // Check if this specific grid cell represents today's real date
-                property bool isToday: model.date.getDate() === root.today.getDate() &&
-                                       model.date.getMonth() === root.today.getMonth() &&
-                                       model.date.getFullYear() === root.today.getFullYear()
+                property bool isToday: model.date.getDate() === cal.today.getDate() &&
+                                       model.date.getMonth() === cal.today.getMonth() &&
+                                       model.date.getFullYear() === cal.today.getFullYear()
 
                 // A soft accent tile keeps today findable without shouting
                 border.width: 1

@@ -5,7 +5,6 @@ import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
 
-import "modules/menus"
 import "modules"
 import "components"
 

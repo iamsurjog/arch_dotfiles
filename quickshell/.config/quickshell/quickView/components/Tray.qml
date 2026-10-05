@@ -5,7 +5,7 @@ import Quickshell.Services.SystemTray
 import Quickshell.Widgets
 
 RowLayout {
-    id: root
+    id: tray
     spacing: 8
 
     // Explicitly require the root window reference from shell.qml
@@ -38,14 +38,15 @@ RowLayout {
                 
                 anchor {
                     // Use the hard reference instead of the dynamic attached property
-                    window: root.panelRoot
-                    
-                    rect.x: trayItemRec.mapToItem(root.panelRoot, 0, 0).x
-                    rect.y: trayItemRec.mapToItem(root.panelRoot, 0, 0).y
+                    window: tray.panelRoot
+
                     rect.width: trayItemRec.width
                     rect.height: trayItemRec.height
+                    rect.y: topBar.y + topBar.height / 2 
+                    rect.x: parent.x
                     
-                    edges: Edges.Bottom | Edges.Left
+                    edges: Edges.top | Edges.right
+                    
                 }
             }
 

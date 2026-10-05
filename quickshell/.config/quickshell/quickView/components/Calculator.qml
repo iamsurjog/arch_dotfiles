@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 Rectangle {
-    id: root
+    id: calc
     radius: 16
     clip: true
     color: "transparent"
@@ -84,7 +84,7 @@ Rectangle {
             Text {
                 anchors.fill: parent
                 anchors.margins: 14
-                text: root.display
+                text: calc.display
                 color: theme.text
                 font.pixelSize: 26
                 font.bold: true

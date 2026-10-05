@@ -4,7 +4,7 @@ import Quickshell.Hyprland
 import Quickshell.Wayland
 
 Rectangle {
-    id: root
+    id: spwkspc
 
     radius: 16
     clip: true
@@ -41,7 +41,7 @@ Rectangle {
 
             Rectangle {
                 // Safely grab the workspace data if it exists at this index
-                property var wsData: index < root.specialWorkspaces.length ? root.specialWorkspaces[index] : null
+                property var wsData: index < spwkspc.specialWorkspaces.length ? spwkspc.specialWorkspaces[index] : null
                 property bool isOccupied: !!wsData
                 
                 property int wsId: isOccupied ? wsData.id : 0

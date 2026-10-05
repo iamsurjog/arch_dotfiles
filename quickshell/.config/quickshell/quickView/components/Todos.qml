@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell.Io
 
 Rectangle {
-    id: root
+    id: todos
     width: 350
     height: 500
     radius: 16

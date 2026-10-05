@@ -8,18 +8,14 @@ Item {
     implicitHeight: 500
 
     property int speed: 5000
-
-    // --- GLOBAL SHORTCUTS THAT BYPASS FOCUS ---
-    // The "enabled: wallRoot.visible" ensures they only trigger when the wall menu is open
-    // --- ROLLBACK LOGIC ---
     property bool wallpaperSelected: false
+
 
     onVisibleChanged: {
         if (visible) {
-            // Reset state when the menu opens
             wallpaperSelected = false
+            list.forceActiveFocus()
         } else if (!wallpaperSelected) {
-            // If the menu closed (Escape, Windows key, etc.) without selecting, revert colors
             Quickshell.execDetached(["wallust", "run", "/home/randomguy/Pictures/wallpaper.png"])
         }
     }
@@ -27,46 +23,28 @@ Item {
     Shortcut {
         sequence: "Ctrl+J"
         enabled: wallRoot.visible
-        onActivated: {
-            list.animSpeed = wallRoot.speed
-            list.selectedIndex = list.clampIndex(list.selectedIndex + 1)
-            list.ensureVisibleAnimated(list.selectedIndex)
-        }
+        onActivated: list.incrementCurrentIndex()
     }
     Shortcut {
         sequence: "Ctrl+K"
         enabled: wallRoot.visible
-        onActivated: {
-            list.animSpeed = wallRoot.speed
-            list.selectedIndex = list.clampIndex(list.selectedIndex - 1)
-            list.ensureVisibleAnimated(list.selectedIndex)
-        }
+        onActivated: list.decrementCurrentIndex()
     }
     Shortcut {
-        sequence: "Ctrl+D"
+        sequence: "Ctrl+F"
         enabled: wallRoot.visible
-        onActivated: {
-            list.animSpeed = wallRoot.speed * 7
-            list.selectedIndex = list.clampIndex(list.selectedIndex + 7)
-            list.ensureVisibleAnimated(list.selectedIndex)
-        }
+        onActivated: list.currentIndex = Math.min(list.count - 1, list.currentIndex + 7)
     }
     Shortcut {
-        sequence: "Ctrl+U"
+        sequence: "Ctrl+B"
         enabled: wallRoot.visible
-        onActivated: {
-            list.animSpeed = wallRoot.speed * 7
-            list.selectedIndex = list.clampIndex(list.selectedIndex - 7)
-            list.ensureVisibleAnimated(list.selectedIndex)
-        }
+        onActivated: list.currentIndex = Math.max(0, list.currentIndex - 7)
     }
     Shortcut {
         sequence: "Return"
         enabled: wallRoot.visible
         onActivated: list.activateCurrent()
     }
-
-    // ------------------------------------------
 
     Component.onCompleted: {
         Quickshell.execDetached(["bash", Quickshell.shellPath("cache.sh"), Quickshell.shellDir])
@@ -76,102 +54,80 @@ Item {
         id: folderModel
         folder: "file:///home/randomguy/Pictures/Wallpapers/"
         showDirs: false
-        nameFilters: ["*.png","*.jpg"]
+        nameFilters: ["*.png", "*.jpg"]
         sortField: FolderListModel.Name
     }
 
     ListView {
         id: list
         anchors.fill: parent
-
         model: folderModel
         orientation: ListView.Horizontal
-        spacing: 4
+        spacing: 12
         clip: true
         cacheBuffer: width * 2
 
-        property int selectedIndex: 0
         property real tileWidth: width / 7 - 10
-        property int animSpeed: wallRoot.speed
+        
+        // Native automatic scrolling to keep current item visible
+        highlightFollowsCurrentItem: true
+        highlightMoveDuration: 250
+        preferredHighlightBegin: width * 0.1
+        preferredHighlightEnd: width * 0.9
+        highlightRangeMode: ListView.ApplyRange
 
-        // 1. A timer to prevent system lag when scrolling rapidly
         Timer {
             id: previewTimer
-            interval: 150 // Waits 150ms after you stop scrolling before running wallust
+            interval: 150
             repeat: false
             onTriggered: {
-                let path = folderModel.get(list.selectedIndex, "filePath")
+                let path = folderModel.get(list.currentIndex, "filePath")
                 if (path) {
-                    // Ensure we are passing a normal path, stripping 'file://' if QML adds it
                     if (path.startsWith("file://")) path = path.substring(7)
                     Quickshell.execDetached(["wallust", "run", path])
                 }
             }
         }
 
-        // 2. Trigger the timer every time the selection changes
-        onSelectedIndexChanged: {
+        onCurrentIndexChanged: {
             previewTimer.restart()
         }
 
-        function clampIndex(i) {
-            return Math.max(0, Math.min(i, count - 1))
-        }
-
-        // 3. Update the activation function with the awww command
         function activateCurrent() {
-            let path = folderModel.get(selectedIndex, "filePath")
+            let path = folderModel.get(currentIndex, "filePath")
             if (path) {
                 if (path.startsWith("file://")) path = path.substring(7)
 
-                // Tell the rollback logic to cancel
                 wallRoot.wallpaperSelected = true
 
                 Quickshell.execDetached(["awww", "img", path, "-t", "grow", "--transition-duration", "1"])
                 Quickshell.execDetached(["cp", path, "/home/randomguy/Pictures/wallpaper.png"])
                 Quickshell.execDetached(["cp", path, "/home/randomguy/Pictures/wallpaper_def.png"])
             }
-            if (main) main.isOpen = false
-        }
-
-        function clampX(x) {
-            return Math.max(0, Math.min(x, contentWidth - width))
-        }
-
-        function ensureVisibleAnimated(i) {
-            const step = tileWidth + spacing
-            const itemStart = i * step
-            const itemEnd = itemStart + tileWidth + 20
-
-            if (itemStart < contentX)
-            contentX = clampX(itemStart)
-            else if (itemEnd > contentX + width)
-            contentX = clampX(itemStart - (width - step))
-        }
-
-        Behavior on contentX {
-            SmoothedAnimation {
-                property int v: list.animSpeed
-                duration: 100
-            }
+            if (typeof main !== "undefined" && main) main.isOpen = false
         }
 
         delegate: Item {
-            property bool active: index === list.selectedIndex
+            id: delegateRoot
             width: list.tileWidth
             height: 500
+            
+            // Visual polish: Scale up and increase opacity when active
+            scale: ListView.isCurrentItem ? 1.05 : 0.95
+            opacity: ListView.isCurrentItem ? 1.0 : 0.5
+            z: ListView.isCurrentItem ? 10 : 1
 
-            Behavior on width {
-                NumberAnimation {
-                    duration: 50
-                    easing.type: Easing.OutCubic
-                }
+            Behavior on scale {
+                NumberAnimation { duration: 200; easing.type: Easing.OutBack }
+            }
+            Behavior on opacity {
+                NumberAnimation { duration: 200 }
             }
 
             Text {
-                id: alt
+                id: altText
                 text: "Loading..."
-                color: "#C27B63"
+                color: ListView.isCurrentItem ? "#E29B83" : "#C27B63"
                 anchors.centerIn: parent
                 font.pixelSize: 16
                 transform: Shear { xFactor: -0.25 }
@@ -181,16 +137,17 @@ Item {
                 id: img
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
-
                 asynchronous: true
                 cache: false
                 smooth: true
-
                 source: "file:///home/randomguy/.cache/quickshell/thumbs/" + fileName
-
                 sourceSize.width: width
                 sourceSize.height: height
                 transform: Shear { xFactor: -0.25 }
+                
+                // Fade in smoothly when loaded
+                opacity: status === Image.Ready ? 1.0 : 0.0
+                Behavior on opacity { NumberAnimation { duration: 300 } }
 
                 Timer {
                     id: retryTimer
@@ -205,7 +162,7 @@ Item {
 
                 onStatusChanged: {
                     if (status === Image.Error) {
-                        alt.text = "Caching"
+                        altText.text = "Caching..."
                         retryTimer.start()
                     }
                 }
@@ -213,30 +170,35 @@ Item {
 
             Rectangle {
                 id: border
-                z: 10
-                visible: parent.active
-                width: list.tileWidth
-                height: 500
+                anchors.fill: parent
                 color: "transparent"
-
-                border.width: 4
-                border.color: "#C27B63"
+                border.width: ListView.isCurrentItem ? 5 : 2
+                border.color: ListView.isCurrentItem ? theme.accent : theme.accentSoft
                 transform: Shear { xFactor: -0.25 }
+                
+                Behavior on border.color { ColorAnimation { duration: 200 } }
+                Behavior on border.width { NumberAnimation { duration: 200 } }
             }
 
             MouseArea {
                 anchors.fill: parent
-
+                hoverEnabled: true
+                
                 onClicked: {
-                    list.selectedIndex = index
-                    list.activateCurrent()
+                    if (list.currentIndex === index) {
+                        list.activateCurrent()
+                    } else {
+                        list.currentIndex = index
+                    }
                 }
 
-                onWheel: function(wheel) {
-                    list.contentX = list.clampX(
-                        list.contentX - wheel.angleDelta.y * 2
-                    )
-                    wheel.accepted = false
+                onWheel: (wheel) => {
+                    if (wheel.angleDelta.y > 0) {
+                        list.decrementCurrentIndex()
+                    } else {
+                        list.incrementCurrentIndex()
+                    }
+                    wheel.accepted = true
                 }
             }
         }
