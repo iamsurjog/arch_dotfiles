@@ -37,7 +37,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("/home/randomguy/surjo/path/vit_wifi.sh")
     hl.exec_cmd("/home/randomguy/.config/waybar/scripts/reset_workgroup.sh ")
     -- apps --
-    hl.exec_cmd("waybar")
+    -- hl.exec_cmd("waybar")
     -- hl.exec_cmd("qs -c quickshell-overview")
     hl.exec_cmd("qs -c quickView")
     hl.exec_cmd("qs -c hyprtodo")
