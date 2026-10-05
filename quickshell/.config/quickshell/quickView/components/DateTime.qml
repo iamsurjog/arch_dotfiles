@@ -1,3 +1,5 @@
+import Quickshell
+import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.UPower
@@ -31,7 +33,7 @@ Rectangle {
 
     // Grab the system's primary merged display battery via DBus
     property var battery: UPower.displayDevice
-    
+
     // Map UPower device states directly
     property bool isCharging: battery && (battery.state === UPowerDeviceState.Charging || battery.state === UPowerDeviceState.FullyCharged)
     property real batPercent: battery ? (battery.percentage * 100) : 0
@@ -41,11 +43,10 @@ Rectangle {
         anchors.centerIn: parent
         spacing: 14
 
-
         // Clock Block
         ColumnLayout {
             spacing: 2
-            
+
             Text {
                 text: root.timeString
                 color: theme.text
@@ -72,18 +73,32 @@ Rectangle {
         RowLayout {
             spacing: 7
             visible: battery !== null && battery.isPresent
-            
+            opacity: mouseArea.containsMouse ? 0.7 : 1.0
+
             Text {
                 text: root.isCharging ? "⚡" : (root.batPercent > 20 ? "🔋" : "🪫")
                 color: root.isCharging ? theme.accent : theme.text
                 font.pixelSize: 16
+                // Visual indicator: lower opacity when hovered
+
             }
-            
+
             Text {
                 text: Math.round(root.batPercent) + "%"
                 color: theme.text
                 font.pixelSize: 16
                 font.bold: true
+            }
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent
+                hoverEnabled: true // Required to track containsMouse without clicking
+                cursorShape: Qt.PointingHandCursor
+
+                onClicked: {
+                    // Fixed the missing comma syntax error here
+                    Quickshell.execDetached(["wlogout", "-b", "4", "-T", "380", "-B", "380"])
+                }
             }
         }
     }
