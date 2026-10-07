@@ -47,6 +47,7 @@ Rectangle {
 
     onSearchQueryChanged: {
         appList.currentIndex = filteredApps.length > 0 ? 0 : -1
+        console.log()
 
     }
 

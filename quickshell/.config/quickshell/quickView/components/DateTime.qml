@@ -91,7 +91,9 @@ Rectangle {
             }
             MouseArea {
                 id: mouseArea
+                // Layout.alignment.fill: parent
                 anchors.fill: parent
+
                 hoverEnabled: true // Required to track containsMouse without clicking
                 cursorShape: Qt.PointingHandCursor
 

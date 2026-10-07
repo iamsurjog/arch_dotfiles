@@ -209,14 +209,14 @@ PanelWindow {
         // 3. Your Tray, perfectly pushed to the right side
     }
 
-    // Main
+    // TODO: better wallpaper selector
     GridLayout {
         id: grid
         columns: 3
         rows: 2
         columnSpacing: 14
         rowSpacing: 14
-        visible: !launcher.typing
+        visible: !launcher.typing || launcher.wallpaperMode
 
         anchors {
             top: topBar.bottom
@@ -233,7 +233,7 @@ PanelWindow {
         CalendarComp   { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
         Workspaces     { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
         Todos          { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
-        Notifications  { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
+        Metrics  { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
         SpWorkspaces   { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
         Calculator     { Layout.fillWidth: true; Layout.fillHeight: true; Layout.preferredWidth: 1; Layout.preferredHeight: 1 }
     }
