@@ -39,9 +39,8 @@ hl.on("hyprland.start", function ()
     -- apps --
     -- hl.exec_cmd("waybar")
     -- hl.exec_cmd("qs -c quickshell-overview")
-    hl.exec_cmd("qs -c quickView")
-    hl.exec_cmd("qs -c hyprtodo")
-    hl.exec_cmd("qs -c popout")
+    -- hl.exec_cmd("qs -c hyprtodo")
+    -- hl.exec_cmd("qs -c popout")
     hl.exec_cmd("qs -c quickView -n")
 
     hl.exec_cmd("cava-bg")
