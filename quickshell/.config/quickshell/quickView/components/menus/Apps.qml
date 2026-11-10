@@ -10,7 +10,7 @@ Rectangle {
     id: appDrawer
     width: 400
     // Hug the result list rather than always reserving a fixed slab of space
-    height: Math.max(Math.min(appList.contentHeight + 20, 480), 64)
+    height: Math.max(Math.min(appList.contentHeight + 20, 375), 64)
     radius: 16
     clip: true
     color: theme.fade(colors.background, 0.94)

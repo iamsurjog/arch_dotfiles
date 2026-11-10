@@ -9,6 +9,12 @@ Rectangle {
     property bool typing: inputField.text.trim().length > 0
     property bool wallpaperMode: inputField.text.trim().toLowerCase().startsWith("/wall")
     property string searchQuery: inputField.text
+    
+    onWallpaperModeChanged: {
+        if (wallpaperMode){
+            Quickshell.execDetached(["quickshell", "-c", "hyprquickpaper", "-n"])
+        }
+    }
 
     onSearchQueryChanged: {
         appMenu.searchQuery = searchQuery
