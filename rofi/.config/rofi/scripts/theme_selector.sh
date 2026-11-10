@@ -5,7 +5,9 @@ if [ -n "$selected_theme" ]; then
         /home/randomguy/.config/quickshell/hyprquickpaper/commands.sh /home/randomguy/Pictures/wallpaper_def.png
     else
         gowall convert /home/randomguy/Pictures/wallpaper_def.png -t $selected_theme - > /home/randomguy/Pictures/wallpaper_themed.png 
-        /home/randomguy/.config/quickshell/hyprquickpaper/commands.sh /home/randomguy/Pictures/wallpaper_themed.png
+        awww img /home/randomguy/Pictures/wallpaper_themed.png -t grow --transition-duration 1
+        wallust run /home/randomguy/Pictures/wallpaper_themed.png
+        cp /home/randomguy/Pictures/wallpaper_themed.png /home/randomguy/Pictures/wallpaper.png
     fi
 fi
 
