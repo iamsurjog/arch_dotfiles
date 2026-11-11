@@ -139,3 +139,9 @@ hl.config({
     },
 })
 
+hl.config({
+    cursor = {
+        sync_gsettings_theme = true
+    }
+})
+
