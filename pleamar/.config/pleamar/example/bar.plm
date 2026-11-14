@@ -1,0 +1,211 @@
+language 0.4
+import "colors.plm"
+
+scene Bar {
+    surface { size: 240, 80 }
+    permissions { services: "audio", "brightness", "media" }
+
+    // Song stuff
+    service media as song { playing: bool; title: text; artist: text; art: text; position: number; rate: number; length: number}
+
+    fact target_width = 400
+    prop dynamic_width = 400 ~lively
+    follow dynamic_width = target_width
+    image album_cover = from song.art, 100, 100
+    text album_art = ""
+    image album_cover = from album_art, 100, 100
+
+
+    fact media_playing = false
+    fact song_updated = false
+    prop mediaSlide = 0 ~lively
+    follow mediaSlide = if( ( audioActive or song_updated ) and media_playing , 1, 0)
+
+    on still song_updated for 2.5s { song_updated = false }
+    on still audioActive for 2.5s { song_updated = false }
+
+
+    fact heard: number = 0                      // `time` when the position last came in
+    on change song.position { heard = time }
+    let elapsed = min(song.position + if(song.playing, (time - heard) * song.rate, 0), song.length)
+
+    prop done = 0 ~120ms                        // the jumps of a seek, eased
+    follow done = elapsed / max(song.length, 1)
+
+
+    surface mediaPopup {
+        size: 2000, 100
+        anchor: top_left
+        open: mediaSlide > 0.01
+
+        group {
+            move: 0, -80 * (1 - mediaSlide)
+            body {
+                color: background
+                rim: 8%
+                box { from: 0, 0; size: dynamic_width, 100; corner: 16 }
+                box { from: 0, 0; size: dynamic_width, 40; corner: 0 }
+                box { from: 0, 0; size: dynamic_width/2, 100; corner: 0 }
+            }
+
+            // 1. The Album Art & Placeholder
+            group {
+                clip box { from: 10, 10; size: 80, 80; corner: 12 }
+                box { from: 10, 10; size: 80, 80; color: #2b2d2d } 
+                
+                // Show the image only if album_art is not empty
+                image album_cover { 
+                    at: 10, 10
+                    size: 80, 80
+                }
+            }
+
+            // 2. The Text (now with truncation)
+            text song.title {
+                at: 110, 20
+                anchor: left
+                size: 16
+                weight: 700
+                color: foreground
+                width: dynamic_width - 130  // Constrains the text to the available box space
+                lines: 1                    // Automatically adds "..." if the text is too long
+            }
+
+            box{
+                from: 110, 50
+                size: dynamic_width - 130, 6
+                corner: 4
+                color: foreground
+            }
+
+            box{
+                from: 110, 50
+                size: ( dynamic_width - 130 ) * done , 6
+                corner: 4
+                color: color5
+            }
+
+            text "{elapsed, time}"{
+                at: dynamic_width - 85, 60
+                
+            }
+            text "/"{
+                at: dynamic_width - 55, 60
+                
+            }
+            text "{song.length, time}"{
+                at: dynamic_width - 50, 60
+                
+            }
+
+            text song.artist {
+                at: 110, 60
+                anchor: left
+                size: 14
+                color: foreground
+                width: dynamic_width - 130
+                lines: 1
+            }
+        }
+    }
+
+    // Volume stuff
+    service audio { volume: number; muted: bool }
+    let audio_state = audio.volume + if(audio.muted, 100, 0)
+
+    on change audio_state { audioActive = true }
+    on still audio_state for 2.5s { audioActive = false }
+
+    prop audioSlide = 0 ~lively
+    follow audioSlide = if(audioActive, 1, 0)
+    fact audioActive = false
+
+    surface volumePopup {
+        size: 64, 200
+        anchor: left
+        open: audioSlide > 0.01
+
+        group { 
+            move: -80 * (1 - audioSlide), 0
+            body {
+                color: background
+                rim: 8%
+
+                box { from: 0, 0; size: 48, 200; corner: 32 }
+                box { from: 0, 0; size: 32, 200; corner: 0 }
+            }
+
+            box { 
+                from: 18, 24
+                size: 8, 120
+                corner: 4
+                color: foreground
+                opacity: 15% 
+            }
+
+            box { 
+                from: 18, 24 + 120 * (1 - min( max( audio.volume/1.5, 0 ), 1 ))
+                size: 8, 120 * min( max( audio.volume/1.5, 0 ), 1 )
+                corner: 4
+                color: if(audio.muted, #e86a9a, color5)
+            }
+
+            text number(min(max(audio.volume / 1.5 * 100, 0), 100), 0) { 
+                at: 22, 172
+                anchor: center
+                size: 14
+                weight: 700
+                color: foreground
+            }
+        }
+    }
+
+    // Brightness stuff
+    service brightness { level: number }
+    prop brightSlide = 0 ~lively
+    follow brightSlide = if(brightActive, 1, 0)
+    fact brightActive = false
+
+    on change brightness.level { brightActive = true }
+    on still brightness.level for 2.5s { brightActive = false }
+
+    surface brightnessPopup {
+        size: 64, 200
+        anchor: right
+        open: brightSlide > 0.01
+
+        group { 
+            move: 80 * (1 - brightSlide), 0
+            body {
+                color: background
+                rim: 8%
+
+                box { from: 0, 0; size: 32, 200; corner: 32 }
+                box { from: 16, 0; size: 48, 200; corner: 0 }
+            }
+
+            box { 
+                from: 18, 24
+                size: 8, 120
+                corner: 4
+                color: foreground
+                opacity: 15% 
+            }
+
+            box { 
+                from: 18, 24 + 120 * (1 - brightness.level)
+                size: 8, 120 * brightness.level
+                corner: 4
+                color: color5
+            }
+
+            text number(brightness.level * 100, 0) { 
+                at: 22, 172
+                anchor: center
+                size: 14
+                weight: 700
+                color: foreground
+            }
+        }
+    }
+}

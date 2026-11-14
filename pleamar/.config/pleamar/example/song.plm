@@ -1,0 +1,19 @@
+language 0.4
+scene Progress {
+    surface { size: 240, 60 }
+    permissions { services: "media" }
+    service media as song { playing: bool; position: number; rate: number; length: number }
+
+    fact heard: number = 0                      // `time` when the position last came in
+    on change song.position { heard = time }
+    let elapsed = min(song.position + if(song.playing, (time - heard) * song.rate, 0), song.length)
+
+    prop done = 0 ~120ms                        // the jumps of a seek, eased
+    follow done = elapsed / max(song.length, 1)
+
+    box { from: 0, 0; size: 240, 60; color: #151616 }
+    box { from: 20, 38; size: 200, 4; corner: 2; color: #f5f7f5; opacity: 14% }
+    box { from: 20, 38; size: 200 * done, 4; corner: 2; color: #9ed6bd }
+    text "{elapsed, time}" { at: 20, 22; anchor: left center; size: 12; color: #f5f7f5 }
+    text "{song.length, time}" { at: 220, 22; anchor: right center; size: 12; color: #f5f7f5; opacity: 50% }
+}

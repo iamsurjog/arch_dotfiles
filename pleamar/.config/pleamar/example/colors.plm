@@ -1,0 +1,22 @@
+library Theme{
+	let background = #141518
+	let foreground = #EDDFDD
+	let cursor = #A1888D
+	let color0 = #3D4043
+	let color1 = #3F4851
+	let color2 = #6B575D
+	let color3 = #526B76
+	let color4 = #947A7C
+	let color5 = #5C8A96
+	let color6 = #997A77
+	let color7 = #DDC9C6
+	let color8 = #9B8C8B
+	let color9 = #414E59
+	let color10 = #7B6068
+	let color11 = #5A7C8A
+	let color12 = #A1757A
+	let color13 = #3B8A9F
+	let color14 = #CCA39E
+	let color15 = #DDC9C6
+}
+
