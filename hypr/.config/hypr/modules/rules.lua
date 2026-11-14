@@ -141,12 +141,12 @@ hl.window_rule({
 })
 
 
-hl.window_rule({
-    name  = "obsidian",
-    match = { initial_title = "^(.* - Obsidian).*$" },
-    opacity = "0.9 0.8",
-    workspace = "special:Task",
-})
+-- hl.window_rule({
+--     name  = "obsidian",
+--     match = { initial_title = "^(.* - Obsidian).*$" },
+--     opacity = "0.9 0.8",
+--     workspace = "special:Task",
+-- })
 
 hl.window_rule({
     name  = "thunar-opacity",
