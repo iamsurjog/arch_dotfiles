@@ -46,6 +46,9 @@ btop.target = '~/.config/btop/themes/colors-btop.theme'
 hyprland.template = 'colors-hyprland.lua'
 hyprland.target = '~/.config/hypr/colors-hyprland.lua'
 
+hyprlock.template = 'colors-hyprlock.conf'
+hyprlock.target = '~/.config/hypr/colors-hyprlock.conf'
+
 tmux.template = 'colors-tmux.conf'
 tmux.target = '~/.tmux/colors-tmux.conf'
 
